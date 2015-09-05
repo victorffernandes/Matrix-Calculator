@@ -11,7 +11,41 @@ namespace WindowsFormsApp
         public int columns;
         public double[,] array;
         public double det;
+        public static List<double> detRegularity = new List<double>();
 
+        public Matriz switchRows(int i, int i2)
+        {
+            Matriz result = new Matriz(rows,columns);
+            for (int r = 0; r < rows; r++)
+            {
+                for (int k = 0; k < columns; k++)
+                {
+                    if (r == i)
+                    {
+                        result.setValue(i, k, getValue(i2, k));
+                    }
+                    else if (r == i2)
+                    {
+                        result.setValue(i2, k, getValue(i, k));
+                    }
+                    else
+                    {
+                        result.setValue(r, k, getValue(r, k));
+                    }
+                }
+            }
+            return result;
+        }
+
+
+        public static Matriz multiplyQueue(Matriz g,double ope)
+        {
+            for(int i = 0;i<g.columns;i++)
+            {
+                g.setValue(0, i, g.getValue(0, i) * ope);
+            }
+            return g;
+        }
 
         public static Matriz getWithoutLC(int i , int j,Matriz m)
         {
@@ -30,7 +64,6 @@ namespace WindowsFormsApp
                     r.setValue(n-1, b - actualI,m.getValue(n, b));
                 }
             }
-            Console.WriteLine(r.getAllValues());
             return r;
         }
 
@@ -105,25 +138,88 @@ namespace WindowsFormsApp
             return r;
         }
 
+        public static Matriz getChioMethod(Matriz g)
+        {
+            for (int i = 1; i < g.rows; i++) 
+            {
+                for(int j = 1; j < g.columns; j++) 
+                {
+                    g.setValue(i, j, g.getValue(i,j)-(g.array[0, j] * g.array[i, 0]));
+                }
+            }
+            return getWithoutLC(0,0,g);
+        }
+
+
 
         public static double calculateDet(Matriz g) {
             double r = 0;
             if (g.rows == g.columns) {
                 if (g.rows == 2) {
                     r = g.getDiagonal(0, 0, true) - g.getDiagonal(0, 1, false);
+                    return r;
                 } else if (g.rows == 3) {
                     Matriz m = g.getSarrusMethod();
                     r = m.getDiagonal(0, 0, true) + m.getDiagonal(0, 1, true) + m.getDiagonal(0, 2, true) - (m.getDiagonal(0, 2, false) + m.getDiagonal(0, 3, false) + m.getDiagonal(0, 4, false));
-                } else {
-                    for(int i = 0;i<g.columns;i++)
+                    //Console.WriteLine(r);
+                    foreach (double b in detRegularity) { r = r * b; }
+                    
+                    return Math.Round(r);
+                } 
+                else 
+                {
+                    //caso o primeiro elemento seja igual a zero
+                    if(g.getValue(0,0) == 0)
                     {
-                        r += g.array[0, i] * Math.Pow(-1,i+0) * calculateDet(getWithoutLC(0, i , g));
+                        int e = 0;
+                       for (int i = 1; i < g.rows; i++)//for para iterar por toda a primeira coluna para achar um elemento diferente de zero
+                       {
+                           e++;
+                           if(g.getValue(i,0) != 0)//caso ache algum diferente de zero
+                           {  
+                               if (g.getValue(i, 0) == 1)//caso seja diferente de zero e igual a 1
+                               {
+                                   detRegularity.Add(-1);
+                                   return calculateDet(getChioMethod(g.switchRows(0, i)));
+                               }
+                               else if(g.getValue(i,0) != 1)
+                               {
+                                   detRegularity.Add(g.getValue(i, 0));
+                                   detRegularity.Add(-1);
+                                   double factor = g.getValue(i, 0);
+                                   for(int j = 0; j < g.columns;j++)
+                                   {
+                                       g.setValue(i, j, g.getValue(i,j)/factor);
+                                   }
+                                   return calculateDet(getChioMethod(g.switchRows(0, i)));
+                               }
+                           }
+                       }
+                        if(e==g.rows)return 0;
                     }
+                    else if (g.getValue(0, 0) == 1)
+                    {
+                        return calculateDet(getChioMethod(g));
+                    }
+                    else
+                    {
+                        detRegularity.Add(g.getValue(0, 0));
+                        double factor = g.getValue(0, 0);
+                        for (int j = 0; j < g.columns; j++)
+                        {
+                            g.setValue(0, j, g.getValue(0,j)/factor);
+                        }
+                        
+                        return calculateDet(getChioMethod(g));
+                    }
+                    return double.NaN;
                 }
-            } else {
+
+            }
+            else
+            {
                 return double.NaN;
             }
-            return r;
         }
 
 

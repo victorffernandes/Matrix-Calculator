@@ -25,3 +25,6 @@ C:\Users\Victor Fernandes\Desktop\Work\Projetos\WindowsFormsApp_v2\WindowsFormsA
 C:\Users\Victor Fernandes\Desktop\Work\Projetos\WindowsFormsApp_v2\WindowsFormsApp\obj\Debug\WindowsFormsApp.csproj.GenerateResource.Cache
 C:\Users\Victor Fernandes\Desktop\Work\Projetos\WindowsFormsApp_v2\WindowsFormsApp\bin\Debug\WindowsFormsApp.exe
 C:\Users\Victor Fernandes\Desktop\Work\Projetos\WindowsFormsApp_v2\WindowsFormsApp\bin\Debug\WindowsFormsApp.pdb
+C:\Users\Victor Fernandes\Desktop\Work\Matrix-Calculator\WindowsFormsApp\bin\Debug\WindowsFormsApp.exe.config
+C:\Users\Victor Fernandes\Desktop\Work\Matrix-Calculator\WindowsFormsApp\obj\Debug\WindowsFormsApp.exe
+C:\Users\Victor Fernandes\Desktop\Work\Matrix-Calculator\WindowsFormsApp\obj\Debug\WindowsFormsApp.pdb
