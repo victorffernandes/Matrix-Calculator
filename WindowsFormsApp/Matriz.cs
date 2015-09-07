@@ -12,6 +12,40 @@ namespace WindowsFormsApp
         public double[,] array;
         public double det;
         public static List<double> detRegularity = new List<double>();
+       
+        public static Matriz scale(Matriz m, double x,double y)
+        {
+            Matriz s = new Matriz(2, 2);
+            s.setValue(0, 0, x);
+            s.setValue(1, 1, y);
+            return multiply(s, m);
+        }
+
+
+        public static Matriz translate(Matriz m,double x, double y)
+        {
+            Matriz t = new Matriz(m.rows, m.columns);
+            for(int j = 0;j<m.columns;j++)
+            {
+                t.setValue(0, j, x);
+                t.setValue(1, j, y);
+            }
+            return somarMatriz(t, m);
+        }
+
+
+        public static Matriz rotate(Matriz m, double angle)
+        {
+            Matriz r = new Matriz(2, 2);
+            r.setValue(0, 0, Math.Cos(angle * (Math.PI / 180)));
+            r.setValue(0, 1, -Math.Sin(angle * (Math.PI / 180)));
+            r.setValue(1, 0, Math.Sin(angle * (Math.PI / 180)));
+            r.setValue(1, 1, Math.Cos(angle * (Math.PI / 180)));
+            Console.WriteLine(r.getAllValues());
+            return multiply(r, m);
+
+        }
+
 
         public Matriz switchRows(int i, int i2)
         {
@@ -61,17 +95,7 @@ namespace WindowsFormsApp
                         actualI++;
                         continue;
                     }
-
-                    if (b>j)
-                    {
-                        if(n>i) r.setValue(n - 1, b - 1, m.getValue(n, b));
-                        if(n<i) r.setValue(n, b - 1, m.getValue(n, b));
-                    }
-                    else if(b<j)
-                    {
-                        if (n > i) r.setValue(n - 1, b, m.getValue(n, b));
-                        if (n < i) r.setValue(n, b, m.getValue(n, b));
-                    }
+                    r.setValue(n-1, b - actualI,m.getValue(n, b));
                 }
             }
             return r;
@@ -160,31 +184,12 @@ namespace WindowsFormsApp
             return getWithoutLC(0,0,g);
         }
 
-        public static Matriz getInversa(Matriz g)
-        {
-            Matriz cof = new Matriz(g.rows, g.columns);
-            for (int i = 0; i < g.rows; i++)
-            {
-                for (int j = 0; j < g.columns; j++)
-                {
-                    cof.setValue(i, j, Math.Pow(-1, i + j) * calculateDet(getWithoutLC(i, j,g)));
-                }
-            }
-            Matriz adj = cof.getTransposta();
 
-            return escalar(calculateDet(g), adj, "div");
-
-        }
 
         public static double calculateDet(Matriz g) {
             double r = 0;
             if (g.rows == g.columns) {
-
-                if(g.rows==1)
-                {
-                    return g.getValue(0, 0);
-                }
-                else if (g.rows == 2) {
+                if (g.rows == 2) {
                     r = g.getDiagonal(0, 0, true) - g.getDiagonal(0, 1, false);
                     return r;
                 } else if (g.rows == 3) {
@@ -193,7 +198,7 @@ namespace WindowsFormsApp
                     //Console.WriteLine(r);
                     foreach (double b in detRegularity) { r = r * b; }
                     
-                    return r;
+                    return Math.Round(r);
                 } 
                 else 
                 {
@@ -241,7 +246,7 @@ namespace WindowsFormsApp
                         
                         return calculateDet(getChioMethod(g));
                     }
-                    return double.NaN;
+                    return 0;
                 }
 
             }
@@ -324,6 +329,24 @@ namespace WindowsFormsApp
         public void setValue(int i, int j, double value) {
             array[i, j] = value;
             //det = calculateDet();
+        }
+
+        public Matriz(int rowN, int columN,string formula)
+        {
+            rows = rowN;
+            columns = columN;
+            array = new double[rowN, columN];
+            StringToFormula str = new StringToFormula();
+            for (int i = 0; i < rowN; i++)
+            {
+                for (int j = 0; j < columN; j++)
+                {
+                    string a = formula.Replace("i",(i+1).ToString());
+                    a = a.Replace("j",(j+1).ToString());
+                    setValue(i, j, str.Eval(a));
+                }
+            }
+
         }
 
         public Matriz(int rowN, int columN) {
