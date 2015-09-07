@@ -38,7 +38,7 @@ namespace WindowsFormsApp
             m2.setValue(3, 1, 2);
             m2.setValue(3, 2, 1);
             Console.WriteLine(m2.getAllValues());
-            Console.WriteLine(Matriz.calculateDet(m2));
+            Console.WriteLine(Matriz.getInversa(m2).getAllValues());
         }
     }
 }

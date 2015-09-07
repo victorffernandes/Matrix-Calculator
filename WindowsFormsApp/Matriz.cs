@@ -61,7 +61,17 @@ namespace WindowsFormsApp
                         actualI++;
                         continue;
                     }
-                    r.setValue(n-1, b - actualI,m.getValue(n, b));
+
+                    if (b>j)
+                    {
+                        if(n>i) r.setValue(n - 1, b - 1, m.getValue(n, b));
+                        if(n<i) r.setValue(n, b - 1, m.getValue(n, b));
+                    }
+                    else if(b<j)
+                    {
+                        if (n > i) r.setValue(n - 1, b, m.getValue(n, b));
+                        if (n < i) r.setValue(n, b, m.getValue(n, b));
+                    }
                 }
             }
             return r;
@@ -150,12 +160,31 @@ namespace WindowsFormsApp
             return getWithoutLC(0,0,g);
         }
 
+        public static Matriz getInversa(Matriz g)
+        {
+            Matriz cof = new Matriz(g.rows, g.columns);
+            for (int i = 0; i < g.rows; i++)
+            {
+                for (int j = 0; j < g.columns; j++)
+                {
+                    cof.setValue(i, j, Math.Pow(-1, i + j) * calculateDet(getWithoutLC(i, j,g)));
+                }
+            }
+            Matriz adj = cof.getTransposta();
 
+            return escalar(calculateDet(g), adj, "div");
+
+        }
 
         public static double calculateDet(Matriz g) {
             double r = 0;
             if (g.rows == g.columns) {
-                if (g.rows == 2) {
+
+                if(g.rows==1)
+                {
+                    return g.getValue(0, 0);
+                }
+                else if (g.rows == 2) {
                     r = g.getDiagonal(0, 0, true) - g.getDiagonal(0, 1, false);
                     return r;
                 } else if (g.rows == 3) {
@@ -164,7 +193,7 @@ namespace WindowsFormsApp
                     //Console.WriteLine(r);
                     foreach (double b in detRegularity) { r = r * b; }
                     
-                    return Math.Round(r);
+                    return r;
                 } 
                 else 
                 {
