@@ -1,0 +1,106 @@
+c:\users\matheus.barros\documents\visual studio 2013\Projects\WPFlindao\WPFlindao\bin\Debug\WPFlindao.exe.config
+c:\users\matheus.barros\documents\visual studio 2013\Projects\WPFlindao\WPFlindao\bin\Debug\WPFlindao.exe
+c:\users\matheus.barros\documents\visual studio 2013\Projects\WPFlindao\WPFlindao\bin\Debug\WPFlindao.pdb
+c:\users\matheus.barros\documents\visual studio 2013\Projects\WPFlindao\WPFlindao\obj\Debug\WPFlindao.csprojResolveAssemblyReference.cache
+c:\users\matheus.barros\documents\visual studio 2013\Projects\WPFlindao\WPFlindao\obj\Debug\MainWindow.baml
+c:\users\matheus.barros\documents\visual studio 2013\Projects\WPFlindao\WPFlindao\obj\Debug\MainWindow.g.cs
+c:\users\matheus.barros\documents\visual studio 2013\Projects\WPFlindao\WPFlindao\obj\Debug\App.g.cs
+c:\users\matheus.barros\documents\visual studio 2013\Projects\WPFlindao\WPFlindao\obj\Debug\WPFlindao_MarkupCompile.cache
+c:\users\matheus.barros\documents\visual studio 2013\Projects\WPFlindao\WPFlindao\obj\Debug\WPFlindao.g.resources
+c:\users\matheus.barros\documents\visual studio 2013\Projects\WPFlindao\WPFlindao\obj\Debug\WPFlindao.Properties.Resources.resources
+c:\users\matheus.barros\documents\visual studio 2013\Projects\WPFlindao\WPFlindao\obj\Debug\WPFlindao.csproj.GenerateResource.Cache
+c:\users\matheus.barros\documents\visual studio 2013\Projects\WPFlindao\WPFlindao\obj\Debug\WPFlindao.exe
+c:\users\matheus.barros\documents\visual studio 2013\Projects\WPFlindao\WPFlindao\obj\Debug\WPFlindao.pdb
+C:\Users\joao.alves\Documents\WPFlindao\WPFlindao\bin\Debug\WPFlindao.exe.config
+C:\Users\joao.alves\Documents\WPFlindao\WPFlindao\obj\Debug\WPFlindao.exe
+C:\Users\joao.alves\Documents\WPFlindao\WPFlindao\obj\Debug\WPFlindao.pdb
+C:\Users\joao.alves\Documents\WPFlindao\WPFlindao\obj\Debug\WPFlindao.csprojResolveAssemblyReference.cache
+C:\Users\joao.alves\Documents\WPFlindao\WPFlindao\obj\Debug\MainWindow.baml
+C:\Users\joao.alves\Documents\WPFlindao\WPFlindao\obj\Debug\MainWindow.g.cs
+C:\Users\joao.alves\Documents\WPFlindao\WPFlindao\obj\Debug\App.g.cs
+C:\Users\joao.alves\Documents\WPFlindao\WPFlindao\obj\Debug\WPFlindao_MarkupCompile.cache
+C:\Users\joao.alves\Documents\WPFlindao\WPFlindao\obj\Debug\WPFlindao.g.resources
+C:\Users\joao.alves\Documents\WPFlindao\WPFlindao\obj\Debug\WPFlindao.Properties.Resources.resources
+C:\Users\joao.alves\Documents\WPFlindao\WPFlindao\obj\Debug\WPFlindao.csproj.GenerateResource.Cache
+C:\Users\joao.alves\Documents\WPFlindao\WPFlindao\bin\Debug\WPFlindao.exe
+C:\Users\joao.alves\Documents\WPFlindao\WPFlindao\bin\Debug\WPFlindao.pdb
+C:\Users\Matheus.barros\Documents\WPFlindao\WPFlindao\bin\Debug\WPFlindao.exe.config
+C:\Users\Matheus.barros\Documents\WPFlindao\WPFlindao\obj\Debug\WPFlindao.exe
+C:\Users\Matheus.barros\Documents\WPFlindao\WPFlindao\obj\Debug\WPFlindao.pdb
+C:\Users\Matheus.barros\Documents\WPFlindao\WPFlindao\bin\Debug\WPFlindao.exe
+C:\Users\Matheus.barros\Documents\WPFlindao\WPFlindao\bin\Debug\WPFlindao.pdb
+C:\Users\Matheus.barros\Documents\WPFlindao\WPFlindao\obj\Debug\WPFlindao.csprojResolveAssemblyReference.cache
+C:\Users\Matheus.barros\Documents\WPFlindao\WPFlindao\obj\Debug\MainWindow.baml
+C:\Users\Matheus.barros\Documents\WPFlindao\WPFlindao\obj\Debug\MainWindow.g.cs
+C:\Users\Matheus.barros\Documents\WPFlindao\WPFlindao\obj\Debug\App.g.cs
+C:\Users\Matheus.barros\Documents\WPFlindao\WPFlindao\obj\Debug\WPFlindao_MarkupCompile.cache
+C:\Users\Matheus.barros\Documents\WPFlindao\WPFlindao\obj\Debug\WPFlindao.g.resources
+C:\Users\Matheus.barros\Documents\WPFlindao\WPFlindao\obj\Debug\WPFlindao.Properties.Resources.resources
+C:\Users\Matheus.barros\Documents\WPFlindao\WPFlindao\obj\Debug\WPFlindao.csproj.GenerateResource.Cache
+C:\Users\matheus\Downloads\WPFlindao\WPFlindao\bin\Debug\WPFlindao.exe.config
+C:\Users\matheus\Downloads\WPFlindao\WPFlindao\obj\Debug\WPFlindao.exe
+C:\Users\matheus\Downloads\WPFlindao\WPFlindao\bin\Debug\WPFlindao.exe
+C:\Users\matheus\Downloads\WPFlindao\WPFlindao\bin\Debug\WPFlindao.pdb
+C:\Users\matheus\Downloads\WPFlindao\WPFlindao\obj\Debug\WPFlindao.csprojResolveAssemblyReference.cache
+C:\Users\matheus\Downloads\WPFlindao\WPFlindao\obj\Debug\MainWindow.baml
+C:\Users\matheus\Downloads\WPFlindao\WPFlindao\obj\Debug\MainWindow.g.cs
+C:\Users\matheus\Downloads\WPFlindao\WPFlindao\obj\Debug\App.g.cs
+C:\Users\matheus\Downloads\WPFlindao\WPFlindao\obj\Debug\WPFlindao_MarkupCompile.cache
+C:\Users\matheus\Downloads\WPFlindao\WPFlindao\obj\Debug\WPFlindao.g.resources
+C:\Users\matheus\Downloads\WPFlindao\WPFlindao\obj\Debug\WPFlindao.Properties.Resources.resources
+C:\Users\matheus\Downloads\WPFlindao\WPFlindao\obj\Debug\WPFlindao.csproj.GenerateResource.Cache
+C:\Users\matheus\Downloads\WPFlindao\WPFlindao\obj\Debug\WPFlindao.pdb
+C:\Users\joao.alves\Downloads\WPFv0.3\WPFlindao\WPFlindao\bin\Debug\WPFlindao.exe.config
+C:\Users\joao.alves\Downloads\WPFv0.3\WPFlindao\WPFlindao\obj\Debug\WPFlindao.exe
+C:\Users\joao.alves\Downloads\WPFv0.3\WPFlindao\WPFlindao\obj\Debug\WPFlindao.pdb
+C:\Users\joao.alves\Downloads\WPFv0.3\WPFlindao\WPFlindao\bin\Debug\WPFlindao.exe
+C:\Users\joao.alves\Downloads\WPFv0.3\WPFlindao\WPFlindao\bin\Debug\WPFlindao.pdb
+C:\Users\joao.alves\Downloads\WPFv0.3\WPFlindao\WPFlindao\obj\Debug\WPFlindao.csprojResolveAssemblyReference.cache
+C:\Users\joao.alves\Downloads\WPFv0.3\WPFlindao\WPFlindao\obj\Debug\MainWindow.baml
+C:\Users\joao.alves\Downloads\WPFv0.3\WPFlindao\WPFlindao\obj\Debug\MainWindow.g.cs
+C:\Users\joao.alves\Downloads\WPFv0.3\WPFlindao\WPFlindao\obj\Debug\App.g.cs
+C:\Users\joao.alves\Downloads\WPFv0.3\WPFlindao\WPFlindao\obj\Debug\WPFlindao_MarkupCompile.cache
+C:\Users\joao.alves\Downloads\WPFv0.3\WPFlindao\WPFlindao\obj\Debug\WPFlindao.g.resources
+C:\Users\joao.alves\Downloads\WPFv0.3\WPFlindao\WPFlindao\obj\Debug\WPFlindao.Properties.Resources.resources
+C:\Users\joao.alves\Downloads\WPFv0.3\WPFlindao\WPFlindao\obj\Debug\WPFlindao.csproj.GenerateResource.Cache
+C:\Users\joao.alves\Downloads\WPFv0.3.1\WPFv0.3.1\WPFlindao\WPFlindao\bin\Debug\WPFlindao.exe.config
+C:\Users\joao.alves\Downloads\WPFv0.3.1\WPFv0.3.1\WPFlindao\WPFlindao\obj\Debug\WPFlindao.exe
+C:\Users\joao.alves\Downloads\WPFv0.3.1\WPFv0.3.1\WPFlindao\WPFlindao\obj\Debug\WPFlindao.pdb
+C:\Users\joao.alves\Downloads\WPFv0.3.1\WPFv0.3.1\WPFlindao\WPFlindao\bin\Debug\WPFlindao.exe
+C:\Users\joao.alves\Downloads\WPFv0.3.1\WPFv0.3.1\WPFlindao\WPFlindao\bin\Debug\WPFlindao.pdb
+C:\Users\joao.alves\Downloads\WPFv0.3.1\WPFv0.3.1\WPFlindao\WPFlindao\obj\Debug\WPFlindao.csprojResolveAssemblyReference.cache
+C:\Users\joao.alves\Downloads\WPFv0.3.1\WPFv0.3.1\WPFlindao\WPFlindao\obj\Debug\MainWindow.baml
+C:\Users\joao.alves\Downloads\WPFv0.3.1\WPFv0.3.1\WPFlindao\WPFlindao\obj\Debug\MainWindow.g.cs
+C:\Users\joao.alves\Downloads\WPFv0.3.1\WPFv0.3.1\WPFlindao\WPFlindao\obj\Debug\App.g.cs
+C:\Users\joao.alves\Downloads\WPFv0.3.1\WPFv0.3.1\WPFlindao\WPFlindao\obj\Debug\WPFlindao_MarkupCompile.cache
+C:\Users\joao.alves\Downloads\WPFv0.3.1\WPFv0.3.1\WPFlindao\WPFlindao\obj\Debug\WPFlindao.g.resources
+C:\Users\joao.alves\Downloads\WPFv0.3.1\WPFv0.3.1\WPFlindao\WPFlindao\obj\Debug\WPFlindao.Properties.Resources.resources
+C:\Users\joao.alves\Downloads\WPFv0.3.1\WPFv0.3.1\WPFlindao\WPFlindao\obj\Debug\WPFlindao.csproj.GenerateResource.Cache
+C:\Users\Matheus.barros\Downloads\WPFlindao\WPFlindao\bin\Debug\WPFlindao.exe.config
+C:\Users\Matheus.barros\Downloads\WPFlindao\WPFlindao\obj\Debug\WPFlindao.exe
+C:\Users\Matheus.barros\Downloads\WPFlindao\WPFlindao\obj\Debug\WPFlindao.pdb
+C:\Users\Matheus.barros\Downloads\WPFlindao\WPFlindao\bin\Debug\WPFlindao.exe
+C:\Users\Matheus.barros\Downloads\WPFlindao\WPFlindao\bin\Debug\WPFlindao.pdb
+C:\Users\Matheus.barros\Downloads\WPFlindao\WPFlindao\obj\Debug\WPFlindao.csprojResolveAssemblyReference.cache
+C:\Users\Matheus.barros\Downloads\WPFlindao\WPFlindao\obj\Debug\MainWindow.baml
+C:\Users\Matheus.barros\Downloads\WPFlindao\WPFlindao\obj\Debug\MainWindow.g.cs
+C:\Users\Matheus.barros\Downloads\WPFlindao\WPFlindao\obj\Debug\App.g.cs
+C:\Users\Matheus.barros\Downloads\WPFlindao\WPFlindao\obj\Debug\WPFlindao_MarkupCompile.cache
+C:\Users\Matheus.barros\Downloads\WPFlindao\WPFlindao\obj\Debug\WPFlindao.g.resources
+C:\Users\Matheus.barros\Downloads\WPFlindao\WPFlindao\obj\Debug\WPFlindao.Properties.Resources.resources
+C:\Users\Matheus.barros\Downloads\WPFlindao\WPFlindao\obj\Debug\WPFlindao.csproj.GenerateResource.Cache
+C:\Users\nicole.freitas\Downloads\WPFlindao\WPFlindao\bin\Debug\WPFlindao.exe.config
+C:\Users\nicole.freitas\Downloads\WPFlindao\WPFlindao\obj\Debug\WPFlindao.exe
+C:\Users\nicole.freitas\Downloads\WPFlindao\WPFlindao\obj\Debug\WPFlindao.pdb
+C:\Users\nicole.freitas\Downloads\WPFlindao\WPFlindao\bin\Debug\WPFlindao.exe
+C:\Users\nicole.freitas\Downloads\WPFlindao\WPFlindao\bin\Debug\WPFlindao.pdb
+C:\Users\nicole.freitas\Downloads\WPFlindao\WPFlindao\obj\Debug\WPFlindao.csprojResolveAssemblyReference.cache
+C:\Users\nicole.freitas\Downloads\WPFlindao\WPFlindao\obj\Debug\MainWindow.baml
+C:\Users\nicole.freitas\Downloads\WPFlindao\WPFlindao\obj\Debug\MainWindow.g.cs
+C:\Users\nicole.freitas\Downloads\WPFlindao\WPFlindao\obj\Debug\App.g.cs
+C:\Users\nicole.freitas\Downloads\WPFlindao\WPFlindao\obj\Debug\WPFlindao_MarkupCompile.cache
+C:\Users\nicole.freitas\Downloads\WPFlindao\WPFlindao\obj\Debug\WPFlindao.g.resources
+C:\Users\nicole.freitas\Downloads\WPFlindao\WPFlindao\obj\Debug\WPFlindao.Properties.Resources.resources
+C:\Users\nicole.freitas\Downloads\WPFlindao\WPFlindao\obj\Debug\WPFlindao.csproj.GenerateResource.Cache
+C:\Users\Victor Fernandes\Desktop\Work\Projetos\Matrix-Calculator\WPFlindao\WPFlindao\bin\Debug\WPFlindao.exe.config
+C:\Users\Victor Fernandes\Desktop\Work\Projetos\Matrix-Calculator\WPFlindao\WPFlindao\obj\Debug\WPFlindao.exe
