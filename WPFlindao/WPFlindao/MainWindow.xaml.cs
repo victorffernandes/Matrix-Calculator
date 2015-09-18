@@ -87,67 +87,71 @@ namespace WPFlindao
             e.Handled = regex.IsMatch(e.Text);
         }
 
-        private void matrixInputTextChanged(object sender, TextChangedEventArgs e) {
-
-                if ((sender as TextBox).Name == "matrixInput1")
+        public void exceptionsMatrixTextBox(ref Label label, ref Brush brush)
+        {
+            string _matrixInputText = (sender as TextBox).Text;
+            if (String.IsNullOrEmpty(_matrixInputText) || String.IsNullOrWhiteSpace(_matrixInputText))
+            {
+                label.Content = "No matrix";
+                label.Foreground = brush;
+            }
+            else
+            {
+                string[] _matrixInputTextSplit = _matrixInputText.Split(new Char[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+                int count = 0;
+                for (int i = 0; i < _matrixInputTextSplit.Length; i++)
                 {
-                    string _matrixInputText = (sender as TextBox).Text;
-                    if (String.IsNullOrEmpty(_matrixInputText) || String.IsNullOrWhiteSpace(_matrixInputText))
+                    string[] _matrixInputSecondaryTextSplit = _matrixInputTextSplit[i].Split(' ');
+
+                    if (i == 0)
                     {
-                        validMatrix1.Content = "No matrix";
-                        validMatrix1.Foreground = (Brush)new BrushConverter().ConvertFromString("#ededed");
+                        count = _matrixInputSecondaryTextSplit.Length;
                     }
-                    else
+                    else if (count != _matrixInputSecondaryTextSplit.Length)
                     {
-                        string[] _matrixInputTextSplit = _matrixInputText.Split(new Char[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
-                        int count = 0;
-                        for (int i = 0; i < _matrixInputTextSplit.Length; i++)
+                        validMatrix1.Content = "Err";
+                        validMatrix1.Foreground = (Brush)new BrushConverter().ConvertFromString("#e74c3c");
+                        break;
+                    }
+
+                    for (int j = 0; j < _matrixInputSecondaryTextSplit.Length; j++)
+                    {
+                        if (String.IsNullOrWhiteSpace(_matrixInputSecondaryTextSplit[j])
+                         || String.IsNullOrEmpty(_matrixInputSecondaryTextSplit[j]))
                         {
-                            string[] _matrixInputSecondaryTextSplit = _matrixInputTextSplit[i].Split(' ');
-
-                            if (i == 0)
-                            {
-                                count = _matrixInputSecondaryTextSplit.Length;
-                            }
-                            else if (count != _matrixInputSecondaryTextSplit.Length)
-                            {
-                                validMatrix1.Content = "Err";
-                                validMatrix1.Foreground = (Brush)new BrushConverter().ConvertFromString("#e74c3c");
-                                break;
-                            }
-
-                            for (int j = 0; j < _matrixInputSecondaryTextSplit.Length; j++)
-                            {
-                                if (String.IsNullOrWhiteSpace(_matrixInputSecondaryTextSplit[j])
-                                 || String.IsNullOrEmpty(_matrixInputSecondaryTextSplit[j]))
-                                {
-                                    validMatrix1.Content = "Err";
-                                    validMatrix1.Foreground = (Brush)new BrushConverter().ConvertFromString("#e74c3c");
-                                    break;
-                                }
-                                validMatrix1.Content = "Succ";
-                                validMatrix1.Foreground = (Brush)new BrushConverter().ConvertFromString("#2ecc71");
-                            }
+                            validMatrix1.Content = "Err";
+                            validMatrix1.Foreground = (Brush)new BrushConverter().ConvertFromString("#e74c3c");
+                            break;
                         }
-
-                        if ((string)validMatrix1.Content == "Succ")
-                        {
-                            try
-                            {
-                                Console.WriteLine(Matriz.stringToMatrix(_matrixInputText).getAllValues());
-                                validMatrix1.Content = "Succ";
-                                validMatrix1.Foreground = (Brush)new BrushConverter().ConvertFromString("#2ecc71");
-                            }
-                            catch
-                            {
-                                validMatrix1.Content = "Err";
-                                validMatrix1.Foreground = (Brush)new BrushConverter().ConvertFromString("#e74c3c");
-                            }
-                        }
+                        validMatrix1.Content = "Succ";
+                        validMatrix1.Foreground = (Brush)new BrushConverter().ConvertFromString("#2ecc71");
                     }
                 }
-                else
+
+                if ((string)validMatrix1.Content == "Succ")
                 {
+                    try
+                    {
+                        Console.WriteLine(Matriz.stringToMatrix(_matrixInputText).getAllValues());
+                        validMatrix1.Content = "Succ";
+                        validMatrix1.Foreground = (Brush)new BrushConverter().ConvertFromString("#2ecc71");
+                    }
+                    catch
+                    {
+                        validMatrix1.Content = "Err";
+                        validMatrix1.Foreground = (Brush)new BrushConverter().ConvertFromString("#e74c3c");
+                    }
+                }
+            }
+        }
+
+
+        private void matrixInputTextChanged(object sender, TextChangedEventArgs e) {
+
+                if (!(sender as TextBox).Name == "matrixInput1")
+                {
+                    
+                } else {
                     string _matrixInputText = (sender as TextBox).Text;
                     if (String.IsNullOrEmpty(_matrixInputText) || String.IsNullOrWhiteSpace(_matrixInputText))
                     {
@@ -190,14 +194,11 @@ namespace WPFlindao
 
                         if ((string)validMatrix2.Content == "Succ")
                         {
-                            try
-                            {
+                            try {
                                 Console.WriteLine(Matriz.stringToMatrix(_matrixInputText).getAllValues());
                                 validMatrix2.Content = "Succ";
                                 validMatrix2.Foreground = (Brush)new BrushConverter().ConvertFromString("#2ecc71");
-                            }
-                            catch
-                            {
+                            } catch {
                                 validMatrix2.Content = "Err";
                                 validMatrix2.Foreground = (Brush)new BrushConverter().ConvertFromString("#e74c3c");
                             }
@@ -222,12 +223,12 @@ namespace WPFlindao
                         displayMatrix.Text = Matriz.multiply(Matriz.stringToMatrix(matrixInput1.Text), Matriz.stringToMatrix(matrixInput2.Text)).getAllValues();
                         break;
                     case "Multiplicação por Escalar":
-                        try
-                        {
+                        try {
                             displayMatrix.Text = Matriz.escalar(double.Parse(matrixInput1.Text), Matriz.stringToMatrix(matrixInput2.Text), "mul").getAllValues();
+                        } catch {
+                            displayMatrix.Text = "Numero escalar não válido.";
                         }
-                        catch { displayMatrix.Text = "Numero escalar não válido."; }
-                            break;
+                        break;
                     case "Determinante":
                         displayMatrix.Text = Matriz.calculateDet(Matriz.stringToMatrix(matrixInput1.Text)).ToString();
                         break;

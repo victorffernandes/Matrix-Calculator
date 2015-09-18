@@ -74,8 +74,7 @@ namespace WindowsFormsApp
 
         public static Matriz multiplyQueue(Matriz g,double ope)
         {
-            for(int i = 0;i<g.columns;i++)
-            {
+            for (int i = 0; i < g.columns; i++) {
                 g.setValue(0, i, g.getValue(0, i) * ope);
             }
             return g;
