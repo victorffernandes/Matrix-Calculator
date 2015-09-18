@@ -11,7 +11,75 @@ namespace WindowsFormsApp
         public int columns;
         public double[,] array;
         public double det;
+        public static List<double> detRegularity = new List<double>();
+       
+        public static Matriz scale(Matriz m, double x,double y)
+        {
+            Matriz s = new Matriz(2, 2);
+            s.setValue(0, 0, x);
+            s.setValue(1, 1, y);
+            return multiply(s, m);
+        }
 
+
+        public static Matriz translate(Matriz m,double x, double y)
+        {
+            Matriz t = new Matriz(m.rows, m.columns);
+            for(int j = 0;j<m.columns;j++)
+            {
+                t.setValue(0, j, x);
+                t.setValue(1, j, y);
+            }
+            return somarMatriz(t, m);
+        }
+
+
+        public static Matriz rotate(Matriz m, double angle)
+        {
+            Matriz r = new Matriz(2, 2);
+            r.setValue(0, 0, Math.Cos(angle * (Math.PI / 180)));
+            r.setValue(0, 1, -Math.Sin(angle * (Math.PI / 180)));
+            r.setValue(1, 0, Math.Sin(angle * (Math.PI / 180)));
+            r.setValue(1, 1, Math.Cos(angle * (Math.PI / 180)));
+            Console.WriteLine(r.getAllValues());
+            return multiply(r, m);
+
+        }
+
+
+        public Matriz switchRows(int i, int i2)
+        {
+            Matriz result = new Matriz(rows,columns);
+            for (int r = 0; r < rows; r++)
+            {
+                for (int k = 0; k < columns; k++)
+                {
+                    if (r == i)
+                    {
+                        result.setValue(i, k, getValue(i2, k));
+                    }
+                    else if (r == i2)
+                    {
+                        result.setValue(i2, k, getValue(i, k));
+                    }
+                    else
+                    {
+                        result.setValue(r, k, getValue(r, k));
+                    }
+                }
+            }
+            return result;
+        }
+
+
+        public static Matriz multiplyQueue(Matriz g,double ope)
+        {
+            for(int i = 0;i<g.columns;i++)
+            {
+                g.setValue(0, i, g.getValue(0, i) * ope);
+            }
+            return g;
+        }
 
         public static Matriz getWithoutLC(int i , int j,Matriz m)
         {
@@ -30,7 +98,6 @@ namespace WindowsFormsApp
                     r.setValue(n-1, b - actualI,m.getValue(n, b));
                 }
             }
-            Console.WriteLine(r.getAllValues());
             return r;
         }
 
@@ -105,6 +172,19 @@ namespace WindowsFormsApp
             return r;
         }
 
+        public static Matriz getChioMethod(Matriz g)
+        {
+            for (int i = 1; i < g.rows; i++) 
+            {
+                for(int j = 1; j < g.columns; j++) 
+                {
+                    g.setValue(i, j, g.getValue(i,j)-(g.array[0, j] * g.array[i, 0]));
+                }
+            }
+            return getWithoutLC(0,0,g);
+        }
+
+
 
         public static double calculateDet(Matriz g)
         {
@@ -115,6 +195,7 @@ namespace WindowsFormsApp
                 {
                     r = g.getDiagonal(0, 0, true) - g.getDiagonal(0, 1, false);
                     return r;
+<<<<<<< HEAD
                 }
                 else if (g.rows == 3)
                 {
@@ -136,6 +217,70 @@ namespace WindowsFormsApp
                 }
             }
             return 132313123;
+=======
+                } else if (g.rows == 3) {
+                    Matriz m = g.getSarrusMethod();
+                    r = m.getDiagonal(0, 0, true) + m.getDiagonal(0, 1, true) + m.getDiagonal(0, 2, true) - (m.getDiagonal(0, 2, false) + m.getDiagonal(0, 3, false) + m.getDiagonal(0, 4, false));
+                    //Console.WriteLine(r);
+                    foreach (double b in detRegularity) { r = r * b; }
+                    
+                    return Math.Round(r);
+                } 
+                else 
+                {
+                    //caso o primeiro elemento seja igual a zero
+                    if(g.getValue(0,0) == 0)
+                    {
+                        int e = 0;
+                       for (int i = 1; i < g.rows; i++)//for para iterar por toda a primeira coluna para achar um elemento diferente de zero
+                       {
+                           e++;
+                           if(g.getValue(i,0) != 0)//caso ache algum diferente de zero
+                           {  
+                               if (g.getValue(i, 0) == 1)//caso seja diferente de zero e igual a 1
+                               {
+                                   detRegularity.Add(-1);
+                                   return calculateDet(getChioMethod(g.switchRows(0, i)));
+                               }
+                               else if(g.getValue(i,0) != 1)
+                               {
+                                   detRegularity.Add(g.getValue(i, 0));
+                                   detRegularity.Add(-1);
+                                   double factor = g.getValue(i, 0);
+                                   for(int j = 0; j < g.columns;j++)
+                                   {
+                                       g.setValue(i, j, g.getValue(i,j)/factor);
+                                   }
+                                   return calculateDet(getChioMethod(g.switchRows(0, i)));
+                               }
+                           }
+                       }
+                        if(e==g.rows)return 0;
+                    }
+                    else if (g.getValue(0, 0) == 1)
+                    {
+                        return calculateDet(getChioMethod(g));
+                    }
+                    else
+                    {
+                        detRegularity.Add(g.getValue(0, 0));
+                        double factor = g.getValue(0, 0);
+                        for (int j = 0; j < g.columns; j++)
+                        {
+                            g.setValue(0, j, g.getValue(0,j)/factor);
+                        }
+                        
+                        return calculateDet(getChioMethod(g));
+                    }
+                    return 0;
+                }
+
+            }
+            else
+            {
+                return double.NaN;
+            }
+>>>>>>> origin/master
         }
 
 
@@ -211,6 +356,24 @@ namespace WindowsFormsApp
         public void setValue(int i, int j, double value) {
             array[i, j] = value;
             //det = calculateDet();
+        }
+
+        public Matriz(int rowN, int columN,string formula)
+        {
+            rows = rowN;
+            columns = columN;
+            array = new double[rowN, columN];
+            StringToFormula str = new StringToFormula();
+            for (int i = 0; i < rowN; i++)
+            {
+                for (int j = 0; j < columN; j++)
+                {
+                    string a = formula.Replace("i",(i+1).ToString());
+                    a = a.Replace("j",(j+1).ToString());
+                    setValue(i, j, str.Eval(a));
+                }
+            }
+
         }
 
         public Matriz(int rowN, int columN) {

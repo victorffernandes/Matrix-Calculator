@@ -12,9 +12,14 @@ namespace WindowsFormsApp
 {
     public partial class Form1 : Form
     {
+
+
+
+
         public Form1()
         {
             InitializeComponent();
+<<<<<<< HEAD
             Matriz m = new Matriz(2, 2);
             m.setValue(0, 0, 1);
             m.setValue(0, 1, 2);
@@ -48,6 +53,21 @@ namespace WindowsFormsApp
             m2.setValue(4, 4, 3);
             Console.WriteLine(m2.getAllValues());
             Console.WriteLine(Matriz.calculateDet(m2));
+=======
+
+            Matriz example = new Matriz(2, 10, "i^2 - j^2");
+
+            Console.WriteLine(example.getAllValues());
+            Console.WriteLine(Matriz.calculateDet(example));
+            Console.WriteLine("Rotate"+Matriz.rotate(example,90).getAllValues());
+            Console.WriteLine("Translate"+(Matriz.translate(example, 2, 2).getAllValues()));
+            Console.WriteLine("Scale"+Matriz.scale(example, 2, 2).getAllValues());
+            Console.WriteLine("Squared"+Matriz.multiply(example, example.getTransposta()).getAllValues());
+            Console.WriteLine("Sum by itself"+Matriz.somarMatriz(example, example).getAllValues());
+            Console.WriteLine("Subtrated by itself"+Matriz.subtrairMatriz(example, example).getAllValues());
+
+
+>>>>>>> origin/master
         }
     }
 }
