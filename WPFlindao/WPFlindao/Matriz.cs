@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WindowsFormsApp
+namespace WPFlindao
 {
     public class Matriz {
         public int rows;
@@ -13,14 +13,26 @@ namespace WindowsFormsApp
         public double det;
         public static List<double> detRegularity = new List<double>();
        
-        public static Matriz scale(Matriz m, double x,double y)
+        public static Matriz stringToMatrix(string str)
         {
-            Matriz s = new Matriz(2, 2);
-            s.setValue(0, 0, x);
-            s.setValue(1, 1, y);
-            return multiply(s, m);
+            string[] _str = str.Split(new Char[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+            Matriz _matrix = new Matriz(_str.Length, _str[0].Split(' ').Length);
+            string[] _strWhitespace = _str[0].Split(' ');
+            for (int i = 0; i < _str.Length; i++) {
+                for (int j = 0; j < _strWhitespace.Length; j++) {
+                    _matrix.setValue(i, j, double.Parse((!(String.IsNullOrWhiteSpace(_str[i].Split(' ')[j])) ? _str[i].Split(' ')[j] : "0")));
+                }
+            }
+            return _matrix;
         }
 
+        public static Matriz scale(Matriz m, double x,double y)
+        {
+            Matriz _matrix = new Matriz(2, 2);
+            _matrix.setValue(0, 0, x);
+            _matrix.setValue(1, 1, y);
+            return multiply(_matrix, m);
+        }
 
         public static Matriz translate(Matriz m,double x, double y)
         {
@@ -33,6 +45,21 @@ namespace WindowsFormsApp
             return somarMatriz(t, m);
         }
 
+        public static Matriz getInversa(Matriz g)
+        {
+            Matriz cof = new Matriz(g.rows, g.columns);
+            for (int i = 0; i < g.rows; i++)
+            {
+                for (int j = 0; j < g.columns; j++)
+                {
+                    cof.setValue(i, j, Math.Pow(-1, i + j) * calculateDet(getWithoutLC(i, j, g)));
+                }
+            }
+            Matriz adj = cof.getTransposta();
+
+            return escalar(calculateDet(g), adj, "div");
+
+        }
 
         public static Matriz rotate(Matriz m, double angle)
         {
@@ -41,7 +68,7 @@ namespace WindowsFormsApp
             r.setValue(0, 1, -Math.Sin(angle * (Math.PI / 180)));
             r.setValue(1, 0, Math.Sin(angle * (Math.PI / 180)));
             r.setValue(1, 1, Math.Cos(angle * (Math.PI / 180)));
-            Console.WriteLine(r.getAllValues());
+            //Console.WriteLine(r.getAllValues());
             return multiply(r, m);
 
         }
@@ -83,19 +110,29 @@ namespace WindowsFormsApp
 
         public static Matriz getWithoutLC(int i , int j,Matriz m)
         {
-            Matriz r = new Matriz(m.rows - 1 , m.columns - 1);
+            Matriz r = new Matriz(m.rows - 1, m.columns - 1);
             int actualI = 0;
-            for(int n = 0; n < m.rows;n++)
+            for (int n = 0; n < m.rows; n++)
             {
                 actualI = 0;
-                for(int b = 0;b<m.columns;b++)
+                for (int b = 0; b < m.columns; b++)
                 {
-                    if(b == j || n == i)
+                    if (b == j || n == i)
                     {
                         actualI++;
                         continue;
                     }
-                    r.setValue(n-1, b - actualI,m.getValue(n, b));
+
+                    if (b > j)
+                    {
+                        if (n > i) r.setValue(n - 1, b - 1, m.getValue(n, b));
+                        if (n < i) r.setValue(n, b - 1, m.getValue(n, b));
+                    }
+                    else if (b < j)
+                    {
+                        if (n > i) r.setValue(n - 1, b, m.getValue(n, b));
+                        if (n < i) r.setValue(n, b, m.getValue(n, b));
+                    }
                 }
             }
             return r;
@@ -260,22 +297,29 @@ namespace WindowsFormsApp
         public string getAllValues() {
             string r = "";
             for (int i = 0; i < rows; i++) {
-                r += "[ ";
                 for (int j = 0; j < columns; j++) {
                     r += array[i, j].ToString() + " ";
                 }
-                r += "]" + "\n";
+                r += "\n";
             }
             return r;
         }
 
         public static Matriz somarMatriz(Matriz m1, Matriz m2) {
             Matriz r = new Matriz(m1.rows, m1.columns);
-
-            for (int i = 0; i < m1.rows; i++) {
-                for (int j = 0; j < m1.columns; j++) {
-                    r.setValue(i, j, m1.array[i, j] + m2.array[i, j]); 
+            if (m1.rows == m2.rows && m1.columns == m2.columns)
+            {
+                for (int i = 0; i < m1.rows; i++)
+                {
+                    for (int j = 0; j < m1.columns; j++)
+                    {
+                        r.setValue(i, j, m1.array[i, j] + m2.array[i, j]);
+                    }
                 }
+            }
+            else
+            {
+                throw new Exception("Deu Ruim");
             }
             return r;
         }
@@ -283,11 +327,19 @@ namespace WindowsFormsApp
         public static Matriz subtrairMatriz(Matriz m1, Matriz m2)
         {
             Matriz r = new Matriz(m1.rows, m1.columns);
-
-            for (int i = 0; i < m1.rows; i++) {
-                for (int j = 0; j < m1.columns; j++) {
-                    r.setValue(i, j, m1.array[i, j] - m2.array[i, j]);
+            if (m1.rows == m2.rows && m1.columns == m2.columns)
+            {
+                for (int i = 0; i < m1.rows; i++)
+                {
+                    for (int j = 0; j < m1.columns; j++)
+                    {
+                        r.setValue(i, j, m1.array[i, j] - m2.array[i, j]);
+                    }
                 }
+            }
+            else
+            {
+                throw new Exception("Deu Ruim");
             }
             return r;
         }
