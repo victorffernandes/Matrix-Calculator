@@ -27,7 +27,6 @@ namespace WPFlindao
         public MainWindow() {
             InitializeComponent();
             canvas = matrixCanvas;
-
             DrawCartesianGrid(25, "#555555");
 
             Polygon p = new Polygon();
@@ -89,49 +88,154 @@ namespace WPFlindao
         }
 
         private void matrixInputTextChanged(object sender, TextChangedEventArgs e) {
-            string _matrixInputText = (sender as TextBox).Text;
-            if (String.IsNullOrEmpty(_matrixInputText) || String.IsNullOrWhiteSpace(_matrixInputText)) {
-                validMatrix1.Content = "No matrix";
-                validMatrix1.Foreground = (Brush)new BrushConverter().ConvertFromString("#ededed");
-            } else {
-                string[] _matrixInputTextSplit = _matrixInputText.Split(new Char[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
-                int count = 0;
-                Console.WriteLine("\n");
-                for (int i = 0; i < _matrixInputTextSplit.Length; i++) {
-                    string[] _matrixInputSecondaryTextSplit = _matrixInputTextSplit[i].Split(' ');
 
-                    if (i == 0) {
-                        count = _matrixInputSecondaryTextSplit.Length;
-                    } else if (count != _matrixInputSecondaryTextSplit.Length) {
-                        validMatrix1.Content = "Err";
-                        validMatrix1.Foreground = (Brush)new BrushConverter().ConvertFromString("#e74c3c");
-                        break;
+                if ((sender as TextBox).Name == "matrixInput1")
+                {
+                    string _matrixInputText = (sender as TextBox).Text;
+                    if (String.IsNullOrEmpty(_matrixInputText) || String.IsNullOrWhiteSpace(_matrixInputText))
+                    {
+                        validMatrix1.Content = "No matrix";
+                        validMatrix1.Foreground = (Brush)new BrushConverter().ConvertFromString("#ededed");
                     }
+                    else
+                    {
+                        string[] _matrixInputTextSplit = _matrixInputText.Split(new Char[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+                        int count = 0;
+                        for (int i = 0; i < _matrixInputTextSplit.Length; i++)
+                        {
+                            string[] _matrixInputSecondaryTextSplit = _matrixInputTextSplit[i].Split(' ');
 
-                    for (int j = 0; j < _matrixInputSecondaryTextSplit.Length; j++) {
-                        if (String.IsNullOrWhiteSpace(_matrixInputSecondaryTextSplit[j])
-                         || String.IsNullOrEmpty(_matrixInputSecondaryTextSplit[j])) {
-                            validMatrix1.Content = "Err";
-                            validMatrix1.Foreground = (Brush)new BrushConverter().ConvertFromString("#e74c3c");
-                            break;
+                            if (i == 0)
+                            {
+                                count = _matrixInputSecondaryTextSplit.Length;
+                            }
+                            else if (count != _matrixInputSecondaryTextSplit.Length)
+                            {
+                                validMatrix1.Content = "Err";
+                                validMatrix1.Foreground = (Brush)new BrushConverter().ConvertFromString("#e74c3c");
+                                break;
+                            }
+
+                            for (int j = 0; j < _matrixInputSecondaryTextSplit.Length; j++)
+                            {
+                                if (String.IsNullOrWhiteSpace(_matrixInputSecondaryTextSplit[j])
+                                 || String.IsNullOrEmpty(_matrixInputSecondaryTextSplit[j]))
+                                {
+                                    validMatrix1.Content = "Err";
+                                    validMatrix1.Foreground = (Brush)new BrushConverter().ConvertFromString("#e74c3c");
+                                    break;
+                                }
+                                validMatrix1.Content = "Succ";
+                                validMatrix1.Foreground = (Brush)new BrushConverter().ConvertFromString("#2ecc71");
+                            }
                         }
-                        validMatrix1.Content = "Succ";
-                        validMatrix1.Foreground = (Brush)new BrushConverter().ConvertFromString("#2ecc71");
+
+                        if ((string)validMatrix1.Content == "Succ")
+                        {
+                            try
+                            {
+                                Console.WriteLine(Matriz.stringToMatrix(_matrixInputText).getAllValues());
+                                validMatrix1.Content = "Succ";
+                                validMatrix1.Foreground = (Brush)new BrushConverter().ConvertFromString("#2ecc71");
+                            }
+                            catch
+                            {
+                                validMatrix1.Content = "Err";
+                                validMatrix1.Foreground = (Brush)new BrushConverter().ConvertFromString("#e74c3c");
+                            }
+                        }
                     }
                 }
+                else
+                {
+                    string _matrixInputText = (sender as TextBox).Text;
+                    if (String.IsNullOrEmpty(_matrixInputText) || String.IsNullOrWhiteSpace(_matrixInputText))
+                    {
+                        validMatrix2.Content = "No matrix";
+                        validMatrix2.Foreground = (Brush)new BrushConverter().ConvertFromString("#ededed");
+                    }
+                    else
+                    {
+                        string[] _matrixInputTextSplit = _matrixInputText.Split(new Char[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+                        int count = 0;
+                        Console.WriteLine("\n");
+                        for (int i = 0; i < _matrixInputTextSplit.Length; i++)
+                        {
+                            string[] _matrixInputSecondaryTextSplit = _matrixInputTextSplit[i].Split(' ');
 
-                if ((string)validMatrix1.Content == "Succ") {
-                    Console.WriteLine(Matriz.stringToMatrix(_matrixInputText).getAllValues());
+                            if (i == 0)
+                            {
+                                count = _matrixInputSecondaryTextSplit.Length;
+                            }
+                            else if (count != _matrixInputSecondaryTextSplit.Length)
+                            {
+                                validMatrix2.Content = "Err";
+                                validMatrix2.Foreground = (Brush)new BrushConverter().ConvertFromString("#e74c3c");
+                                break;
+                            }
+
+                            for (int j = 0; j < _matrixInputSecondaryTextSplit.Length; j++)
+                            {
+                                if (String.IsNullOrWhiteSpace(_matrixInputSecondaryTextSplit[j])
+                                 || String.IsNullOrEmpty(_matrixInputSecondaryTextSplit[j]))
+                                {
+                                    validMatrix2.Content = "Err";
+                                    validMatrix2.Foreground = (Brush)new BrushConverter().ConvertFromString("#e74c3c");
+                                    break;
+                                }
+                                validMatrix2.Content = "Succ";
+                                validMatrix2.Foreground = (Brush)new BrushConverter().ConvertFromString("#2ecc71");
+                            }
+                        }
+
+                        if ((string)validMatrix2.Content == "Succ")
+                        {
+                            try
+                            {
+                                Console.WriteLine(Matriz.stringToMatrix(_matrixInputText).getAllValues());
+                                validMatrix2.Content = "Succ";
+                                validMatrix2.Foreground = (Brush)new BrushConverter().ConvertFromString("#2ecc71");
+                            }
+                            catch
+                            {
+                                validMatrix2.Content = "Err";
+                                validMatrix2.Foreground = (Brush)new BrushConverter().ConvertFromString("#e74c3c");
+                            }
+                        }
+                    }
                 }
-            }
         }
 
 
         private void matrixOperation(object sender, RoutedEventArgs e) {
-            //comboBoxOperation.
-            if ((string)validMatrix1.Content == "Succ" && (string)validMatrix2.Content == "Succ") {
-                switch (comboBoxOperation) {
-                    case "soma": Console.WriteLine("Fds - Fim de semana");
+            if ((string)validMatrix1.Content == "Succ" && ((string)validMatrix2.Content == "Succ" || comboBoxOperation.Text == "Determinante" || comboBoxOperation.Text == "Inversa"))
+            {
+                switch (comboBoxOperation.Text)
+                {
+                    case "Soma":
+                        displayMatrix.Text = Matriz.somarMatriz(Matriz.stringToMatrix(matrixInput1.Text), Matriz.stringToMatrix(matrixInput2.Text)).getAllValues();
+                        break;
+                    case "Subtração":
+                        displayMatrix.Text = Matriz.subtrairMatriz(Matriz.stringToMatrix(matrixInput1.Text), Matriz.stringToMatrix(matrixInput2.Text)).getAllValues();
+                        break;
+                    case "Multiplicação":
+                        displayMatrix.Text = Matriz.multiply(Matriz.stringToMatrix(matrixInput1.Text), Matriz.stringToMatrix(matrixInput2.Text)).getAllValues();
+                        break;
+                    case "Multiplicação por Escalar":
+                        try
+                        {
+                            displayMatrix.Text = Matriz.escalar(double.Parse(matrixInput1.Text), Matriz.stringToMatrix(matrixInput2.Text), "mul").getAllValues();
+                        }
+                        catch { displayMatrix.Text = "Numero escalar não válido."; }
+                            break;
+                    case "Determinante":
+                        displayMatrix.Text = Matriz.calculateDet(Matriz.stringToMatrix(matrixInput1.Text)).ToString();
+                        break;
+                    case "Inversa":
+                        displayMatrix.Text = Matriz.getInversa(Matriz.stringToMatrix(matrixInput1.Text)).getAllValues();
+                        break;
+                            default: Console.WriteLine("Didn´t worked");
+                        break;
                 }
             }
         }
