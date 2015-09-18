@@ -20,7 +20,7 @@ namespace WindowsFormsApp
             for(int n = 0; n < m.rows;n++)
             {
                 actualI = 0;
-                for(int b = 0;b<m.columns;b++)
+                for(int b = 0; b < m.columns; b++)
                 {
                     if(b == j || n == i)
                     {
@@ -106,24 +106,36 @@ namespace WindowsFormsApp
         }
 
 
-        public static double calculateDet(Matriz g) {
+        public static double calculateDet(Matriz g)
+        {
             double r = 0;
-            if (g.rows == g.columns) {
-                if (g.rows == 2) {
+            if (g.rows == g.columns)
+            {
+                if (g.rows == 2)
+                {
                     r = g.getDiagonal(0, 0, true) - g.getDiagonal(0, 1, false);
-                } else if (g.rows == 3) {
+                    return r;
+                }
+                else if (g.rows == 3)
+                {
                     Matriz m = g.getSarrusMethod();
                     r = m.getDiagonal(0, 0, true) + m.getDiagonal(0, 1, true) + m.getDiagonal(0, 2, true) - (m.getDiagonal(0, 2, false) + m.getDiagonal(0, 3, false) + m.getDiagonal(0, 4, false));
-                } else {
-                    for(int i = 0;i<g.columns;i++)
-                    {
-                        r += g.array[0, i] * Math.Pow(-1,i+0) * calculateDet(getWithoutLC(0, i , g));
-                    }
+                    return r;
                 }
-            } else {
-                return double.NaN;
+                else
+                {
+                    for (int i = 1; i < g.rows; i++)
+                    {
+                        for (int j = 1; j < g.columns; j++)
+                        {
+                            double b = g.getValue(i, j) - (g.getValue(0, j) * g.getValue(i, 0));
+                            g.setValue(i, j, b);
+                        }
+                    }
+                    return calculateDet(getWithoutLC(0, 0, g));
+                }
             }
-            return r;
+            return 132313123;
         }
 
 
