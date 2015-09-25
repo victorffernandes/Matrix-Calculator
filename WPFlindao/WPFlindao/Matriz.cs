@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows;
 
 namespace WPFlindao
 {
@@ -399,6 +402,34 @@ namespace WPFlindao
                 }
             }
 
+        }
+
+
+        public static Matriz collectionToMatriz(PointCollection pC,double xOffset,double yOffSet)
+        {
+            Matriz m = new Matriz(2, pC.Count);
+            for (int i = 0; i < pC.Count; i++)
+            {
+                m.setValue(0, i, pC[i].X + xOffset);
+                m.setValue(1, i, pC[i].Y + yOffSet);
+            }
+            Console.WriteLine(m.getAllValues());
+            return m;
+        }
+
+
+        public static PointCollection matrizToCollection(Matriz m, double xOffset, double yOffSet)
+        {
+            PointCollection p = new PointCollection();
+
+            for (int i = 0; i < m.columns; i++)
+            {
+                Point point = new Point();
+                point.X = m.getValue(0, i) + xOffset;
+                point.Y = m.getValue(1, i)+yOffSet;
+                p.Add(point);
+            }
+            return p;
         }
 
         public Matriz(int rowN, int columN) {

@@ -52,7 +52,18 @@
             <TextBox Name="matrixInput2" TextChanged="matrixInputTextChanged" HorizontalAlignment="Left" Height="240" Margin="270,52,0,0" TextWrapping="Wrap" AcceptsReturn="True" VerticalAlignment="Top" Width="240" FontFamily="Courier New" Background="#22000000" Foreground="#FFEDEDED" CaretBrush="#FFEDEDED" FontSize="16"/>
             <Label Name="validMatrix2" Content="No matrix" HorizontalAlignment="Left" Margin="446,297,0,0" VerticalAlignment="Top" Foreground="#FFEDEDED" Height="26" Width="64"/>
             <Button Content="Button" HorizontalAlignment="Left" Margin="270,11,0,0" VerticalAlignment="Top" Width="240" Height="31" Click="matrixOperation" />
-            <TextBox Name="displayMatrix" Text="{Binding Text, Mode=OneWay}" IsReadOnly="True" HorizontalAlignment="Left" Height="341" Margin="571,52,0,0" TextWrapping="Wrap" AcceptsReturn="True" VerticalAlignment="Top" Width="341" FontFamily="Courier New" Background="#22000000" Foreground="#FFEDEDED" CaretBrush="#FFEDEDED" FontSize="16"/>
+            <TextBox Name="displayMatrix" Text="{Binding Text, Mode=OneWay}" IsReadOnly="True" HorizontalAlignment="Left" Height="281" Margin="550,11,0,0" TextWrapping="Wrap" AcceptsReturn="True" VerticalAlignment="Top" Width="341" FontFamily="Courier New" Background="#22000000" Foreground="#FFEDEDED" CaretBrush="#FFEDEDED" FontSize="16"/>
+            <StackPanel Name="buttonsDisplay" HorizontalAlignment="Left" Height="268" Margin="934,11,0,0" VerticalAlignment="Top" Width="64"/>
+            <StackPanel Name= "xDisplay" HorizontalAlignment="Left" Height="268" Margin="1020,11,0,0" VerticalAlignment="Top" Width="64"/>
+            <StackPanel Name="yDisplay" HorizontalAlignment="Left" Height="268" Margin="1106,10,0,0" VerticalAlignment="Top" Width="64"/>
+            <Button Name="Rotate" Content="Rotate" HorizontalAlignment="Left" Margin="724,349,0,0" VerticalAlignment="Top" Width="75" Click="rotation"/>
+            <Button Name="Translate" Content="Translate" HorizontalAlignment="Left" Margin="724,386,0,0" VerticalAlignment="Top" Width="75" Click="translation"/>
+            <Button Name="Scale" Content="Escale" HorizontalAlignment="Left" Margin="724,426,0,0" VerticalAlignment="Top" Width="75" Click="escaling"/>
+            <TextBox Name="rotacionar" HorizontalAlignment="Left" Height="23" Margin="815,348,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="87"/>
+            <TextBox Name="transladarX" HorizontalAlignment="Left" Height="23" Margin="815,386,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="46"/>
+            <TextBox Name="transladarY" HorizontalAlignment="Left" Height="23" Margin="866,386,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="46"/>
+            <TextBox Name="escalonarX" HorizontalAlignment="Left" Height="23" Margin="815,425,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="46"/>
+            <TextBox x:Name="escalonarY" HorizontalAlignment="Left" Height="23" Margin="866,425,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="46"/>
         </Grid>
     </Grid>
     <x:Code>
