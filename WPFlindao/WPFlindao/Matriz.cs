@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows;
+using System.Data;
 
-namespace WPFlindao
+namespace CalcMatriz
 {
     public class Matriz {
         public int rows;
@@ -12,7 +16,17 @@ namespace WPFlindao
         public double[,] array;
         public double det;
         public static List<double> detRegularity = new List<double>();
-       
+
+        public static double Eval(string expression)
+        {
+            DataTable t = new DataTable();
+            t.Columns.Add("expression", typeof(string), expression);
+            DataRow row = t.NewRow();
+            t.Rows.Add(row);
+            return double.Parse((string)row["expression"]);
+        }
+
+
         public static Matriz stringToMatrix(string str)
         {
             string[] _str = str.Split(new Char[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
@@ -30,8 +44,10 @@ namespace WPFlindao
         {
             Matriz _matrix = new Matriz(2, 2);
             _matrix.setValue(0, 0, x);
+            _matrix.setValue(0, 1, 0);
+            _matrix.setValue(1, 0, 0);
             _matrix.setValue(1, 1, y);
-            return multiply(_matrix, m);
+            return multiply(_matrix,m);
         }
 
         public static Matriz translate(Matriz m,double x, double y)
@@ -64,10 +80,10 @@ namespace WPFlindao
         public static Matriz rotate(Matriz m, double angle)
         {
             Matriz r = new Matriz(2, 2);
-            r.setValue(0, 0, Math.Cos(angle * (Math.PI / 180)));
-            r.setValue(0, 1, -Math.Sin(angle * (Math.PI / 180)));
-            r.setValue(1, 0, Math.Sin(angle * (Math.PI / 180)));
-            r.setValue(1, 1, Math.Cos(angle * (Math.PI / 180)));
+            r.setValue(0, 0, Math.Round(Math.Cos(angle * (Math.PI / 180)),2));
+            r.setValue(0, 1, Math.Round(-Math.Sin(angle * (Math.PI / 180)),2));
+            r.setValue(1, 0, Math.Round(Math.Sin(angle * (Math.PI / 180)),2));
+            r.setValue(1, 1, Math.Round(Math.Cos(angle * (Math.PI / 180)),2));
             //Console.WriteLine(r.getAllValues());
             return multiply(r, m);
 
@@ -285,8 +301,7 @@ namespace WPFlindao
                     }
                     return 0;
                 }
-
-            }
+              }
             else
             {
                 return double.NaN;
@@ -298,7 +313,8 @@ namespace WPFlindao
             string r = "";
             for (int i = 0; i < rows; i++) {
                 for (int j = 0; j < columns; j++) {
-                    r += array[i, j].ToString() + " ";
+
+                    r += (j==columns-1) ? array[i, j].ToString() : (array[i, j].ToString() + " ");
                 }
                 r += "\n";
             }
@@ -388,17 +404,44 @@ namespace WPFlindao
             rows = rowN;
             columns = columN;
             array = new double[rowN, columN];
-            StringToFormula str = new StringToFormula();
             for (int i = 0; i < rowN; i++)
             {
                 for (int j = 0; j < columN; j++)
                 {
                     string a = formula.Replace("i",(i+1).ToString());
                     a = a.Replace("j",(j+1).ToString());
-                    setValue(i, j, str.Eval(a));
+                    setValue(i, j, Eval(a));
                 }
             }
 
+        }
+
+
+        public static Matriz collectionToMatriz(PointCollection pC,double xOffset,double yOffSet)
+        {
+            Matriz m = new Matriz(2, pC.Count);
+            for (int i = 0; i < pC.Count; i++)
+            {
+                m.setValue(0, i, pC[i].X + xOffset);
+                m.setValue(1, i, pC[i].Y + yOffSet);
+            }
+            Console.WriteLine(m.getAllValues());
+            return m;
+        }
+
+
+        public static PointCollection matrizToCollection(Matriz m, double xOffset, double yOffSet)
+        {
+            PointCollection p = new PointCollection();
+
+            for (int i = 0; i < m.columns; i++)
+            {
+                Point point = new Point();
+                point.X = m.getValue(0, i) + xOffset;
+                point.Y = m.getValue(1, i)+yOffSet;
+                p.Add(point);
+            }
+            return p;
         }
 
         public Matriz(int rowN, int columN) {

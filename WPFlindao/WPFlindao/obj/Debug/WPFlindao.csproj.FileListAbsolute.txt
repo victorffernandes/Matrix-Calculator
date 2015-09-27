@@ -115,3 +115,42 @@ C:\Users\Victor Fernandes\Desktop\Work\Projetos\Matrix-Calculator\WPFlindao\WPFl
 C:\Users\Victor Fernandes\Desktop\Work\Projetos\Matrix-Calculator\WPFlindao\WPFlindao\obj\Debug\WPFlindao.Properties.Resources.resources
 C:\Users\Victor Fernandes\Desktop\Work\Projetos\Matrix-Calculator\WPFlindao\WPFlindao\obj\Debug\WPFlindao.csproj.GenerateResource.Cache
 C:\Users\Victor Fernandes\Desktop\Work\Projetos\Matrix-Calculator\WPFlindao\WPFlindao\obj\Debug\WPFlindao.pdb
+C:\Users\victor.fernandes\Desktop\Matrix-Calculator\WPFlindao\WPFlindao\bin\Debug\WPFlindao.exe.config
+C:\Users\victor.fernandes\Desktop\Matrix-Calculator\WPFlindao\WPFlindao\obj\Debug\WPFlindao.exe
+C:\Users\victor.fernandes\Desktop\Matrix-Calculator\WPFlindao\WPFlindao\obj\Debug\WPFlindao.pdb
+C:\Users\victor.fernandes\Desktop\Matrix-Calculator\WPFlindao\WPFlindao\bin\Debug\WPFlindao.exe
+C:\Users\victor.fernandes\Desktop\Matrix-Calculator\WPFlindao\WPFlindao\bin\Debug\WPFlindao.pdb
+C:\Users\victor.fernandes\Desktop\Matrix-Calculator\WPFlindao\WPFlindao\obj\Debug\WPFlindao.csprojResolveAssemblyReference.cache
+C:\Users\victor.fernandes\Desktop\Matrix-Calculator\WPFlindao\WPFlindao\obj\Debug\MainWindow.baml
+C:\Users\victor.fernandes\Desktop\Matrix-Calculator\WPFlindao\WPFlindao\obj\Debug\MainWindow.g.cs
+C:\Users\victor.fernandes\Desktop\Matrix-Calculator\WPFlindao\WPFlindao\obj\Debug\App.g.cs
+C:\Users\victor.fernandes\Desktop\Matrix-Calculator\WPFlindao\WPFlindao\obj\Debug\WPFlindao_MarkupCompile.cache
+C:\Users\victor.fernandes\Desktop\Matrix-Calculator\WPFlindao\WPFlindao\obj\Debug\WPFlindao.g.resources
+C:\Users\victor.fernandes\Desktop\Matrix-Calculator\WPFlindao\WPFlindao\obj\Debug\WPFlindao.Properties.Resources.resources
+C:\Users\victor.fernandes\Desktop\Matrix-Calculator\WPFlindao\WPFlindao\obj\Debug\WPFlindao.csproj.GenerateResource.Cache
+C:\Users\luis.silva\Downloads\Matrix-Calculator-master\Matrix-Calculator-master\WPFlindao\WPFlindao\bin\Debug\WPFlindao.exe.config
+C:\Users\luis.silva\Downloads\Matrix-Calculator-master\Matrix-Calculator-master\WPFlindao\WPFlindao\obj\Debug\WPFlindao.exe
+C:\Users\luis.silva\Downloads\Matrix-Calculator-master\Matrix-Calculator-master\WPFlindao\WPFlindao\obj\Debug\WPFlindao.pdb
+C:\Users\luis.silva\Downloads\Matrix-Calculator-master\Matrix-Calculator-master\WPFlindao\WPFlindao\obj\Debug\WPFlindao.csprojResolveAssemblyReference.cache
+C:\Users\luis.silva\Downloads\Matrix-Calculator-master\Matrix-Calculator-master\WPFlindao\WPFlindao\obj\Debug\MainWindow.baml
+C:\Users\luis.silva\Downloads\Matrix-Calculator-master\Matrix-Calculator-master\WPFlindao\WPFlindao\obj\Debug\MainWindow.g.cs
+C:\Users\luis.silva\Downloads\Matrix-Calculator-master\Matrix-Calculator-master\WPFlindao\WPFlindao\obj\Debug\App.g.cs
+C:\Users\luis.silva\Downloads\Matrix-Calculator-master\Matrix-Calculator-master\WPFlindao\WPFlindao\obj\Debug\WPFlindao_MarkupCompile.cache
+C:\Users\luis.silva\Downloads\Matrix-Calculator-master\Matrix-Calculator-master\WPFlindao\WPFlindao\obj\Debug\WPFlindao.g.resources
+C:\Users\luis.silva\Downloads\Matrix-Calculator-master\Matrix-Calculator-master\WPFlindao\WPFlindao\obj\Debug\WPFlindao.Properties.Resources.resources
+C:\Users\luis.silva\Downloads\Matrix-Calculator-master\Matrix-Calculator-master\WPFlindao\WPFlindao\obj\Debug\WPFlindao.csproj.GenerateResource.Cache
+C:\Users\luis.silva\Downloads\Matrix-Calculator-master\Matrix-Calculator-master\WPFlindao\WPFlindao\bin\Debug\WPFlindao.exe
+C:\Users\luis.silva\Downloads\Matrix-Calculator-master\Matrix-Calculator-master\WPFlindao\WPFlindao\bin\Debug\WPFlindao.pdb
+C:\Users\Victor Fernandes\Desktop\Matrix-Calculator-2509\WPFlindao\WPFlindao\bin\Debug\WPFlindao.exe.config
+C:\Users\Victor Fernandes\Desktop\Matrix-Calculator-2509\WPFlindao\WPFlindao\obj\Debug\WPFlindao.exe
+C:\Users\Victor Fernandes\Desktop\Matrix-Calculator-2509\WPFlindao\WPFlindao\obj\Debug\WPFlindao.pdb
+C:\Users\Victor Fernandes\Desktop\Matrix-Calculator-2509\WPFlindao\WPFlindao\bin\Debug\WPFlindao.exe
+C:\Users\Victor Fernandes\Desktop\Matrix-Calculator-2509\WPFlindao\WPFlindao\bin\Debug\WPFlindao.pdb
+C:\Users\Victor Fernandes\Desktop\Matrix-Calculator-2509\WPFlindao\WPFlindao\obj\Debug\WPFlindao.csprojResolveAssemblyReference.cache
+C:\Users\Victor Fernandes\Desktop\Matrix-Calculator-2509\WPFlindao\WPFlindao\obj\Debug\MainWindow.baml
+C:\Users\Victor Fernandes\Desktop\Matrix-Calculator-2509\WPFlindao\WPFlindao\obj\Debug\MainWindow.g.cs
+C:\Users\Victor Fernandes\Desktop\Matrix-Calculator-2509\WPFlindao\WPFlindao\obj\Debug\App.g.cs
+C:\Users\Victor Fernandes\Desktop\Matrix-Calculator-2509\WPFlindao\WPFlindao\obj\Debug\WPFlindao_MarkupCompile.cache
+C:\Users\Victor Fernandes\Desktop\Matrix-Calculator-2509\WPFlindao\WPFlindao\obj\Debug\WPFlindao.g.resources
+C:\Users\Victor Fernandes\Desktop\Matrix-Calculator-2509\WPFlindao\WPFlindao\obj\Debug\WPFlindao.Properties.Resources.resources
+C:\Users\Victor Fernandes\Desktop\Matrix-Calculator-2509\WPFlindao\WPFlindao\obj\Debug\WPFlindao.csproj.GenerateResource.Cache
