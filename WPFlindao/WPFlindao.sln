@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFlindao", "WPFlindao\WPFlindao.csproj", "{F7A381CE-36FF-4A54-B7EE-E660F96BB02A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalcMatriz", "WPFlindao\CalcMatriz.csproj", "{F7A381CE-36FF-4A54-B7EE-E660F96BB02A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

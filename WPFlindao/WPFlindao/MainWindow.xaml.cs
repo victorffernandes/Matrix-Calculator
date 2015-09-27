@@ -14,21 +14,18 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Text.RegularExpressions;
 
-namespace WPFlindao
+namespace CalcMatriz
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public static PointCollection myPointCollection = new PointCollection();
         public static Canvas canvas;
-
         public MainWindow() {
+            
+            Console.WriteLine();
             InitializeComponent();
             canvas = matrixCanvas;
             DrawCartesianGrid(25, "#555555");
-            
             Polygon  polygon = new Polygon();
             polygon.FillRule = FillRule.Nonzero;
             polygon.Fill = new SolidColorBrush(Colors.DarkOrchid);
@@ -90,31 +87,34 @@ namespace WPFlindao
 
         public  Point GetMousePositionWindowsForms() {
             Point point = Mouse.GetPosition(canvas);
-            Text(point.X, point.Y, "(" + point.X + "," + point.Y + ")", Colors.Red);
-            if(point.X > 0 && point.Y > 0) myPointCollection.Add(point);
+            bool added = false;
+            Text(point.X, point.Y, "(" + (point.X -125) + ":" + (point.Y -125) + ")", Colors.Red);
+            if (point.X > 0 && point.Y > 0) { myPointCollection.Add(point); added = true; }
 
-            if (buttonsDisplay.Children.Count < 10)
+            if (buttonsDisplay.Children.Count < 10 && added)
             {
                 Button b = new Button();
+                b.Click += new RoutedEventHandler(this.button_Click);
                 b.Content = "Change";
                 b.Name = "Button" + myPointCollection.IndexOf(point).ToString();
-                b.Click += delegate
+                /*b.Click += delegate
                 {
                     int index = buttonsDisplay.Children.IndexOf(b);
                     myPointCollection[index] = new Point(double.Parse((xDisplay.Children[index] as TextBox).Text),
                     double.Parse((yDisplay.Children[index] as TextBox).Text));
-                };
-                b.Click += atualizeHUD();
+                    atualizeHUD();
+                };*/
+                //b.Click += atualizeHUD();
                 buttonsDisplay.Children.Add(b);
 
                 TextBox tx = new TextBox();
                 tx.Name = "X" + myPointCollection.IndexOf(point).ToString();
-                tx.Text = point.X.ToString();
+                tx.Text = (point.X - 125).ToString();
                 xDisplay.Children.Add(tx);
 
                 TextBox ty = new TextBox();
                 ty.Name = "Y" + myPointCollection.IndexOf(point).ToString();
-                ty.Text = point.Y.ToString();
+                ty.Text = (point.Y-125).ToString();
                 yDisplay.Children.Add(ty);
             }
 
@@ -123,8 +123,28 @@ namespace WPFlindao
             return new Point(point.X, point.Y);
         }
 
-        public static void ClearPoints() {
+        protected void button_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            Console.WriteLine("click! no " + (sender as Button).Name);
+            // identify which button was clicked and perform necessary actions
+            int index = buttonsDisplay.Children.IndexOf((sender as Button));
+            myPointCollection[index] = new Point(double.Parse((xDisplay.Children[index] as TextBox).Text) + 125,
+            double.Parse((yDisplay.Children[index] as TextBox).Text) + 125);
+            atualizeHUD();
+        }
+
+        public void ClearPoints() {
             myPointCollection.Clear();
+            List<TextBlock> textBlocks = canvas.Children.OfType<TextBlock>().ToList();
+            foreach (TextBlock t in textBlocks)
+            {
+                canvas.Children.Remove(t);
+            }
+            xDisplay.Children.Clear();
+            yDisplay.Children.Clear();
+            buttonsDisplay.Children.Clear();
+            
         }
 
         public static void NumberValidationTextBox(object sender, TextCompositionEventArgs e) {
@@ -242,15 +262,29 @@ namespace WPFlindao
 
         public void atualizeHUD()
         {
-            foreach(object t in canvas.Children)
+            //canvas.Children.Clear();
+            List<TextBlock> textBlocks = canvas.Children.OfType<TextBlock>().ToList();
+            foreach (TextBlock t in textBlocks)
             {
-                if(t is TextBlock)canvas.Children.Remove(t as TextBlock);
+                canvas.Children.Remove(t);
             }
+            //IEnumerable<Polygon> polygons = canvas.Children.OfType<Polygon>();
+
+            //foreach (Polygon p in polygons)
+            //{
+            //    canvas.Children.Remove(p);
+            //}
+
+            //IEnumerable<TextBlock> textBlocks = canvas.Children.OfType<TextBlock>();
+            //foreach(object t in canvas.Children)
+            //{
+            //    if(t is TextBlock)canvas.Children.Remove(t as TextBlock);
+            //}
             for(int i = 0;i<myPointCollection.Count;i++)
             {
-                (xDisplay.Children[i] as TextBox).Text = myPointCollection[i].X.ToString();
-                (yDisplay.Children[i] as TextBox).Text = myPointCollection[i].Y.ToString();
-                Text(myPointCollection[i].X, myPointCollection[i].Y, "(" + myPointCollection[i].X + "," + myPointCollection[i].Y + ")", Colors.Red);
+                (xDisplay.Children[i] as TextBox).Text = (myPointCollection[i].X-125).ToString();
+                (yDisplay.Children[i] as TextBox).Text = (myPointCollection[i].Y-125).ToString();
+                Text(myPointCollection[i].X, myPointCollection[i].Y, "(" + (myPointCollection[i].X -125) + "," + (myPointCollection[i].Y-125) + ")", Colors.Red);
             }
         }
 
@@ -290,19 +324,48 @@ namespace WPFlindao
 
         private void escaling(object sender, RoutedEventArgs e)
         {
-            
             canvas.Children.Clear();
             DrawCartesianGrid(25, "#555555");
             Polygon _p = new Polygon();
             _p.Fill = new SolidColorBrush(Colors.DarkOrchid);
             myPointCollection = Matriz.matrizToCollection(
-                                    Matriz.translate(
-                                        Matriz.collectionToMatriz(myPointCollection, 0, 0),
+                                    Matriz.scale(
+                                        Matriz.collectionToMatriz(myPointCollection, -125, -125),
                                         double.Parse(escalonarX.Text), double.Parse(escalonarY.Text)
-                                    ), 0, 0);
+                                    ), 125,125);
             _p.Points = myPointCollection;
             canvas.Children.Add(_p);
             atualizeHUD();
         }
+
+        private void canvas_leftmousebutton(object sender, MouseButtonEventArgs e)
+        {
+            ClearPoints();
+        }
+        
+        public void createMatrixByFormula(ref TextBox xT,ref TextBox yT,ref TextBox fT , ref TextBox display)
+        {
+            try{
+
+                display.Text = new Matriz(int.Parse(xT.Text),int.Parse(yT.Text), fT.Text).getAllValues();
+            }
+            catch
+            {
+
+            }
+
+        }
+
+
+        private void clickFormula1(object sender, RoutedEventArgs e)
+        {
+            createMatrixByFormula(ref xFormula1, ref yFormula1, ref formula1, ref matrixInput1);
+        }
+
+        private void clickFormula2(object sender, RoutedEventArgs e)
+        {
+            createMatrixByFormula(ref xFormula2, ref yFormula2, ref formula2, ref matrixInput2);
+        }
+
     }
 }
