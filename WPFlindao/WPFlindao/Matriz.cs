@@ -29,15 +29,20 @@ namespace CalcMatriz
 
         public static Matriz stringToMatrix(string str)
         {
-            string[] _str = str.Split(new Char[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
-            Matriz _matrix = new Matriz(_str.Length, _str[0].Split(' ').Length);
-            string[] _strWhitespace = _str[0].Split(' ');
-            for (int i = 0; i < _str.Length; i++) {
-                for (int j = 0; j < _strWhitespace.Length; j++) {
-                    _matrix.setValue(i, j, double.Parse((!(String.IsNullOrWhiteSpace(_str[i].Split(' ')[j])) ? _str[i].Split(' ')[j] : "0")));
+            if (!String.IsNullOrEmpty(str))
+            {
+                string[] _str = str.Split(new Char[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+                Matriz _matrix = new Matriz(_str.Length, _str[0].Split(' ').Length);
+                string[] _strWhitespace = _str[0].Split(' ');
+                for (int i = 0; i < _str.Length; i++) {
+                    for (int j = 0; j < _strWhitespace.Length; j++) {
+                        _matrix.setValue(i, j, double.Parse((!(String.IsNullOrWhiteSpace(_str[i].Split(' ')[j])) ? _str[i].Split(' ')[j] : "0")));
+                    }
                 }
+                return _matrix;
+            } else {
+                return new Matriz(0,0);
             }
-            return _matrix;
         }
 
         public static Matriz scale(Matriz m, double x,double y)
@@ -84,7 +89,6 @@ namespace CalcMatriz
             r.setValue(0, 1, Math.Round(-Math.Sin(angle * (Math.PI / 180)),2));
             r.setValue(1, 0, Math.Round(Math.Sin(angle * (Math.PI / 180)),2));
             r.setValue(1, 1, Math.Round(Math.Cos(angle * (Math.PI / 180)),2));
-            //Console.WriteLine(r.getAllValues());
             return multiply(r, m);
 
         }
@@ -248,52 +252,40 @@ namespace CalcMatriz
                 } else if (g.rows == 3) {
                     Matriz m = g.getSarrusMethod();
                     r = m.getDiagonal(0, 0, true) + m.getDiagonal(0, 1, true) + m.getDiagonal(0, 2, true) - (m.getDiagonal(0, 2, false) + m.getDiagonal(0, 3, false) + m.getDiagonal(0, 4, false));
-                    //Console.WriteLine(r);
-                    foreach (double b in detRegularity) { r = r * b; }
+                    foreach (double b in detRegularity) {
+                        r = r * b;
+                    }
                     
                     return Math.Round(r);
-                } 
-                else 
-                {
-                    //caso o primeiro elemento seja igual a zero
-                    if(g.getValue(0,0) == 0)
-                    {
+                } else {
+                    if(g.getValue(0,0) == 0) {  //                      Caso o primeiro elemento seja igual a zero
                         int e = 0;
-                       for (int i = 1; i < g.rows; i++)//for para iterar por toda a primeira coluna para achar um elemento diferente de zero
-                       {
+                       for (int i = 1; i < g.rows; i++) {  //           Itera por toda a primeira coluna para achar um elemento diferente de zero
                            e++;
-                           if(g.getValue(i,0) != 0)//caso ache algum diferente de zero
-                           {  
-                               if (g.getValue(i, 0) == 1)//caso seja diferente de zero e igual a 1
-                               {
+                           if(g.getValue(i,0) != 0) {  //               Caso ache algum diferente de zero
+                               if (g.getValue(i, 0) == 1) {  //         Caso esse elemento seja igual a 1
                                    detRegularity.Add(-1);
                                    return calculateDet(getChioMethod(g.switchRows(0, i)));
-                               }
-                               else if(g.getValue(i,0) != 1)
-                               {
+                               } else if(g.getValue(i,0) != 1) {  //    Caso esse elemnto seja diferente de 1
                                    detRegularity.Add(g.getValue(i, 0));
                                    detRegularity.Add(-1);
                                    double factor = g.getValue(i, 0);
-                                   for(int j = 0; j < g.columns;j++)
-                                   {
-                                       g.setValue(i, j, g.getValue(i,j)/factor);
+                                   for(int j = 0; j < g.columns;j++) {
+                                       g.setValue(i, j, g.getValue(i,j) / factor);
                                    }
                                    return calculateDet(getChioMethod(g.switchRows(0, i)));
                                }
                            }
                        }
-                        if(e==g.rows)return 0;
-                    }
-                    else if (g.getValue(0, 0) == 1)
-                    {
+                       if (e == g.rows) {
+                           return 0;
+                       }
+                    } else if (g.getValue(0, 0) == 1) {
                         return calculateDet(getChioMethod(g));
-                    }
-                    else
-                    {
+                    } else {
                         detRegularity.Add(g.getValue(0, 0));
                         double factor = g.getValue(0, 0);
-                        for (int j = 0; j < g.columns; j++)
-                        {
+                        for (int j = 0; j < g.columns; j++) {
                             g.setValue(0, j, g.getValue(0,j)/factor);
                         }
                         
@@ -301,9 +293,7 @@ namespace CalcMatriz
                     }
                     return 0;
                 }
-              }
-            else
-            {
+            } else {
                 return double.NaN;
             }
         }
@@ -323,41 +313,31 @@ namespace CalcMatriz
 
         public static Matriz somarMatriz(Matriz m1, Matriz m2) {
             Matriz r = new Matriz(m1.rows, m1.columns);
-            if (m1.rows == m2.rows && m1.columns == m2.columns)
-            {
-                for (int i = 0; i < m1.rows; i++)
-                {
-                    for (int j = 0; j < m1.columns; j++)
-                    {
+            if (m1.rows == m2.rows && m1.columns == m2.columns) {
+                for (int i = 0; i < m1.rows; i++) {
+                    for (int j = 0; j < m1.columns; j++) {
                         r.setValue(i, j, m1.array[i, j] + m2.array[i, j]);
                     }
                 }
+                return r;
+            } else {
+                return new Matriz(0, 0);
             }
-            else
-            {
-                throw new Exception("Deu Ruim");
-            }
-            return r;
         }
 
-        public static Matriz subtrairMatriz(Matriz m1, Matriz m2)
-        {
+        public static Matriz subtrairMatriz(Matriz m1, Matriz m2) {
             Matriz r = new Matriz(m1.rows, m1.columns);
-            if (m1.rows == m2.rows && m1.columns == m2.columns)
-            {
-                for (int i = 0; i < m1.rows; i++)
-                {
-                    for (int j = 0; j < m1.columns; j++)
-                    {
+            if (m1.rows == m2.rows && m1.columns == m2.columns) {
+                for (int i = 0; i < m1.rows; i++) {
+                    for (int j = 0; j < m1.columns; j++) {
                         r.setValue(i, j, m1.array[i, j] - m2.array[i, j]);
                     }
                 }
+                return r;
+            } else {
+                return new Matriz(0, 0);
             }
-            else
-            {
-                throw new Exception("Deu Ruim");
-            }
-            return r;
+            
         }
 
         public Matriz getTransposta() {
@@ -371,18 +351,13 @@ namespace CalcMatriz
         }
 
         public static Matriz multiply(Matriz m1, Matriz m2) {
-            if (m1.columns == m2.rows)
-            {
-
+            if (m1.columns == m2.rows) {
                 Matriz r = new Matriz(m1.rows, m2.columns);
 
                 double nome = 0;
-                for (int i = 0; i < m1.rows; i++)
-                {
-                    for (int j = 0; j < m2.columns; j++)
-                    {
-                        for (int n = 0; n < m1.columns; n++)
-                        {
+                for (int i = 0; i < m1.rows; i++) {
+                    for (int j = 0; j < m2.columns; j++) {
+                        for (int n = 0; n < m1.columns; n++) {
                             nome += m1.array[i, n] * m2.array[n, j];
                         }
                         r.setValue(i, j, nome);
@@ -390,13 +365,13 @@ namespace CalcMatriz
                     }
                 }
                 return r;
+            } else {
+                return new Matriz(0, 0);
             }
-            throw (new Exception("deu Ruim"));
         }
 
         public void setValue(int i, int j, double value) {
             array[i, j] = value;
-            //det = calculateDet();
         }
 
         public Matriz(int rowN, int columN,string formula)
@@ -404,12 +379,10 @@ namespace CalcMatriz
             rows = rowN;
             columns = columN;
             array = new double[rowN, columN];
-            for (int i = 0; i < rowN; i++)
-            {
-                for (int j = 0; j < columN; j++)
-                {
-                    string a = formula.Replace("i",(i+1).ToString());
-                    a = a.Replace("j",(j+1).ToString());
+            for (int i = 0; i < rowN; i++) {
+                for (int j = 0; j < columN; j++) {
+                    string a = formula.Replace("i", (i + 1).ToString());
+                    a = a.Replace("j", (j + 1).ToString());
                     setValue(i, j, Eval(a));
                 }
             }
@@ -420,12 +393,10 @@ namespace CalcMatriz
         public static Matriz collectionToMatriz(PointCollection pC,double xOffset,double yOffSet)
         {
             Matriz m = new Matriz(2, pC.Count);
-            for (int i = 0; i < pC.Count; i++)
-            {
+            for (int i = 0; i < pC.Count; i++) {
                 m.setValue(0, i, pC[i].X + xOffset);
                 m.setValue(1, i, pC[i].Y + yOffSet);
             }
-            Console.WriteLine(m.getAllValues());
             return m;
         }
 
@@ -434,8 +405,7 @@ namespace CalcMatriz
         {
             PointCollection p = new PointCollection();
 
-            for (int i = 0; i < m.columns; i++)
-            {
+            for (int i = 0; i < m.columns; i++) {
                 Point point = new Point();
                 point.X = m.getValue(0, i) + xOffset;
                 point.Y = m.getValue(1, i)+yOffSet;
