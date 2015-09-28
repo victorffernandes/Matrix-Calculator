@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -130,7 +130,7 @@ namespace CalcMatriz
         }
 
         public static void NumberValidationTextBox(object sender, TextCompositionEventArgs e) {
-            Regex regex = new Regex("[^0-9]+");
+            Regex regex = new Regex("[^0-9,]+");
             e.Handled = regex.IsMatch(e.Text);
         }
 
@@ -266,7 +266,7 @@ namespace CalcMatriz
 
         private void rotation(object sender, RoutedEventArgs e)
         {
-            rotacionar.Text = Regex.Replace(rotacionar.Text, "[^0-9]+", "", RegexOptions.Compiled);
+            rotacionar.Text = Regex.Replace(rotacionar.Text, "[^0-9,]+", "", RegexOptions.Compiled);
             rotacionar.Text = (String.IsNullOrEmpty(rotacionar.Text) || String.IsNullOrWhiteSpace(rotacionar.Text)) ? "0" : rotacionar.Text;
             try {
                 canvas.Children.Clear();
@@ -288,10 +288,10 @@ namespace CalcMatriz
 
         private void translation(object sender, RoutedEventArgs e)
         {
-            transladarX.Text = Regex.Replace(rotacionar.Text, "[^0-9]+", "", RegexOptions.Compiled);
-            transladarX.Text = (String.IsNullOrEmpty(rotacionar.Text) || String.IsNullOrWhiteSpace(transladarX.Text)) ? "0" : transladarX.Text;
-            transladarY.Text = Regex.Replace(rotacionar.Text, "[^0-9]+", "", RegexOptions.Compiled);
-            transladarY.Text = (String.IsNullOrEmpty(rotacionar.Text) || String.IsNullOrWhiteSpace(transladarY.Text)) ? "0" : transladarY.Text;
+            transladarX.Text = Regex.Replace(transladarX.Text, "[^0-9,]+", "", RegexOptions.Compiled);
+            transladarX.Text = (String.IsNullOrEmpty(transladarX.Text) || String.IsNullOrWhiteSpace(transladarX.Text)) ? "0" : transladarX.Text;
+            transladarY.Text = Regex.Replace(transladarY.Text, "[^0-9,]+", "", RegexOptions.Compiled);
+            transladarY.Text = (String.IsNullOrEmpty(transladarY.Text) || String.IsNullOrWhiteSpace(transladarY.Text)) ? "0" : transladarY.Text;
             try {
                 canvas.Children.Clear();
                 DrawCartesianGrid(25, "#555555");
@@ -311,10 +311,10 @@ namespace CalcMatriz
 
         private void escaling(object sender, RoutedEventArgs e)
         {
-            escalonarX.Text = Regex.Replace(rotacionar.Text, "[^0-9]+", "", RegexOptions.Compiled);
-            escalonarX.Text = (String.IsNullOrEmpty(rotacionar.Text) || String.IsNullOrWhiteSpace(escalonarX.Text)) ? "1" : escalonarX.Text;
-            escalonarY.Text = Regex.Replace(rotacionar.Text, "[^0-9]+", "", RegexOptions.Compiled);
-            escalonarY.Text = (String.IsNullOrEmpty(rotacionar.Text) || String.IsNullOrWhiteSpace(escalonarY.Text)) ? "1" : escalonarY.Text;
+            escalonarX.Text = Regex.Replace(escalonarX.Text, "[^0-9,]+", "", RegexOptions.Compiled);
+            escalonarX.Text = (String.IsNullOrEmpty(escalonarX.Text) || String.IsNullOrWhiteSpace(escalonarX.Text)) ? "1" : escalonarX.Text;
+            escalonarY.Text = Regex.Replace(escalonarY.Text, "[^0-9,]+", "", RegexOptions.Compiled);
+            escalonarY.Text = (String.IsNullOrEmpty(escalonarY.Text) || String.IsNullOrWhiteSpace(escalonarY.Text)) ? "1" : escalonarY.Text;
             try {
                 canvas.Children.Clear();
                 DrawCartesianGrid(25, "#555555");
