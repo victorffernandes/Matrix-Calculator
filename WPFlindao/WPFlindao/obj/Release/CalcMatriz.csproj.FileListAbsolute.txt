@@ -1,0 +1,12 @@
+C:\Users\Thais.Alves\Desktop\Matrix-Calculator\WPFlindao\WPFlindao\bin\Release\WPFlindao.exe.config
+C:\Users\Thais.Alves\Desktop\Matrix-Calculator\WPFlindao\WPFlindao\bin\Release\WPFlindao.exe
+C:\Users\Thais.Alves\Desktop\Matrix-Calculator\WPFlindao\WPFlindao\bin\Release\WPFlindao.pdb
+C:\Users\Thais.Alves\Desktop\Matrix-Calculator\WPFlindao\WPFlindao\obj\Release\MainWindow.baml
+C:\Users\Thais.Alves\Desktop\Matrix-Calculator\WPFlindao\WPFlindao\obj\Release\MainWindow.g.cs
+C:\Users\Thais.Alves\Desktop\Matrix-Calculator\WPFlindao\WPFlindao\obj\Release\App.g.cs
+C:\Users\Thais.Alves\Desktop\Matrix-Calculator\WPFlindao\WPFlindao\obj\Release\WPFlindao_MarkupCompile.cache
+C:\Users\Thais.Alves\Desktop\Matrix-Calculator\WPFlindao\WPFlindao\obj\Release\WPFlindao.g.resources
+C:\Users\Thais.Alves\Desktop\Matrix-Calculator\WPFlindao\WPFlindao\obj\Release\WPFlindao.Properties.Resources.resources
+C:\Users\Thais.Alves\Desktop\Matrix-Calculator\WPFlindao\WPFlindao\obj\Release\CalcMatriz.csproj.GenerateResource.Cache
+C:\Users\Thais.Alves\Desktop\Matrix-Calculator\WPFlindao\WPFlindao\obj\Release\WPFlindao.exe
+C:\Users\Thais.Alves\Desktop\Matrix-Calculator\WPFlindao\WPFlindao\obj\Release\WPFlindao.pdb
