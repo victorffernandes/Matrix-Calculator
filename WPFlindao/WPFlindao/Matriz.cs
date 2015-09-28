@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -246,6 +246,9 @@ namespace CalcMatriz
         public static double calculateDet(Matriz g) {
             double r = 0;
             if (g.rows == g.columns) {
+                if (g.rows == 1){
+                    return g.getValue(0, 0);
+                }
                 if (g.rows == 2) {
                     r = g.getDiagonal(0, 0, true) - g.getDiagonal(0, 1, false);
                     return r;
