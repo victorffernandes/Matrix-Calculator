@@ -285,9 +285,9 @@ namespace CalcMatriz
 
         private void translation(object sender, RoutedEventArgs e)
         {
-            transladarX.Text = Regex.Replace(transladarX.Text, "[^0-9,]+", "", RegexOptions.Compiled);
+            transladarX.Text = Regex.Replace(transladarX.Text, "[^0-9,-]+", "", RegexOptions.Compiled);
             transladarX.Text = (String.IsNullOrEmpty(transladarX.Text) || String.IsNullOrWhiteSpace(transladarX.Text)) ? "0" : transladarX.Text;
-            transladarY.Text = Regex.Replace(transladarY.Text, "[^0-9,]+", "", RegexOptions.Compiled);
+            transladarY.Text = Regex.Replace(transladarY.Text, "[^0-9,-]+", "", RegexOptions.Compiled);
             transladarY.Text = (String.IsNullOrEmpty(transladarY.Text) || String.IsNullOrWhiteSpace(transladarY.Text)) ? "0" : transladarY.Text;
             try {
                 canvas.Children.Clear();
