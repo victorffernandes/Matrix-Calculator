@@ -14,20 +14,20 @@
             <DropShadowEffect BlurRadius="15" Direction="-90" RenderingBias="Quality" ShadowDepth="2"/>
         </Grid.Effect>
         <Rectangle Fill="#222c3e50" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top" Width="1180"  MouseLeftButtonDown="DragWindow" />
-        <Canvas Name="matrixCanvas" SnapsToDevicePixels="True" HorizontalAlignment="Left" Height="250" Width="250" Margin="930,330,0,0" VerticalAlignment="Top" Background="#FF27272A" ClipToBounds="True" MouseRightButtonDown="canvas_leftmousebutton">
+        <Canvas ToolTip="Left click to add a point, right click to remove all points" Name="matrixCanvas" SnapsToDevicePixels="True" HorizontalAlignment="Left" Height="250" Width="250" Margin="930,330,0,0" VerticalAlignment="Top" Background="#FF27272A" ClipToBounds="True" MouseRightButtonDown="canvas_leftmousebutton">
         </Canvas>
         <Label Content="Matrix" MouseLeftButtonDown="DragWindow" Foreground="#ffededed" Padding="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Height="19" Margin="320,10,319,0" FontSize="16" Width="45"/>
-        <Button Width="40" Height="40" Margin="1140,0,0,540" BorderThickness="0,0,0,0" Background="#00000000" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Click="CloseWindow" MouseEnter="ChangeCloseIcon" MouseLeave="ChangeCloseIcon">
+        <Button ToolTip="Close" Width="40" Height="40" Margin="1140,0,0,540" BorderThickness="0,0,0,0" Background="#00000000" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Click="CloseWindow" MouseEnter="ChangeCloseIcon" MouseLeave="ChangeCloseIcon">
             <Rectangle Width="40" Height="40">
                 <Rectangle.Fill>
                     <ImageBrush x:Name="CloseIcon" ImageSource="Images\x.png" />
                 </Rectangle.Fill>
             </Rectangle>
         </Button>
-        <Button Width="40" Height="40" Margin="1100,0,40,540" BorderThickness="0" Background="#00000000" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Click="CloseWindow" MouseEnter="ChangeMaximizeIcon" MouseLeave="ChangeMaximizeIcon">
+        <Button ToolTip="Minimize" Width="40" Height="40" Margin="1100,0,40,540" BorderThickness="0" Background="#00000000" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Click="MinimizeWindow" MouseEnter="ChangeMinimizeIcon" MouseLeave="ChangeMinimizeIcon">
             <Rectangle Width="40" Height="40">
                 <Rectangle.Fill>
-                    <ImageBrush x:Name="MaximizeIcon" ImageSource="Images\m.png" />
+                    <ImageBrush x:Name="MinimizeIcon" ImageSource="Images\m.png" />
                 </Rectangle.Fill>
             </Rectangle>
         </Button>
@@ -36,66 +36,69 @@
                 <ColumnDefinition Width="233*"/>
                 <ColumnDefinition Width="947*"/>
             </Grid.ColumnDefinitions>
-            <ComboBox Name="comboBoxOperation" Margin="10,10,930,498" IsEditable="False" IsEnabled="True" BorderBrush="#FFABADB3" Grid.ColumnSpan="2">
+            <ComboBox ToolTip="Pick the operation to be used" Name="comboBoxOperation" Margin="10,10,930,498" IsEditable="False" IsEnabled="True" BorderBrush="#FFABADB3" Grid.ColumnSpan="2">
                 <ComboBox.Background>
                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                         <GradientStop Color="#FFF0F0F0" Offset="0"/>
-                        <GradientStop Color="#FF27272A" Offset="1"/>
+                        <GradientStop Color="#FFCDCDCD" Offset="1"/>
                     </LinearGradientBrush>
                 </ComboBox.Background>
-                <ComboBoxItem Name="cbi1" IsSelected="True">Soma</ComboBoxItem>
-                <ComboBoxItem Name="cbi2">Subtração</ComboBoxItem>
-                <ComboBoxItem Name="cbi3">Multiplicação</ComboBoxItem>
-                <ComboBoxItem Name="cbi4">Determinante</ComboBoxItem>
-                <ComboBoxItem Name="cbi5">Multiplicação por Escalar</ComboBoxItem>
-                <ComboBoxItem Name="cbi6">Inversa</ComboBoxItem>
-                <ComboBoxItem Name="cbi7">Transposta</ComboBoxItem>
+                <ComboBoxItem Name="cbi1" IsSelected="True">Sum</ComboBoxItem>
+                <ComboBoxItem Name="cbi2">Subtraction</ComboBoxItem>
+                <ComboBoxItem Name="cbi3">Multiplication</ComboBoxItem>
+                <ComboBoxItem Name="cbi4">Determinant</ComboBoxItem>
+                <ComboBoxItem Name="cbi5">Scalar Multiplication</ComboBoxItem>
+                <ComboBoxItem Name="cbi6">Inverse</ComboBoxItem>
+                <ComboBoxItem Name="cbi7">Transpose</ComboBoxItem>
             </ComboBox>
-            <TextBox Name="matrixInput1" TextChanged="matrixInputTextChanged" HorizontalAlignment="Left" Height="240" Margin="10,52,0,0" TextWrapping="Wrap" AcceptsReturn="True" VerticalAlignment="Top" Width="240" FontFamily="Courier New" Background="#22000000" Foreground="#FFEDEDED" CaretBrush="#FFEDEDED" FontSize="16" Grid.ColumnSpan="2"/>
+            <TextBox ToolTip="Matriz #1" Name="matrixInput1" TextChanged="matrixInputTextChanged" HorizontalAlignment="Left" Height="240" Margin="10,52,0,0" TextWrapping="Wrap" AcceptsReturn="True" VerticalAlignment="Top" Width="240" FontFamily="Courier New" Background="#22000000" Foreground="#FFEDEDED" CaretBrush="#FFEDEDED" FontSize="16" Grid.ColumnSpan="2"/>
             <Label Name="validMatrix1" Content="No matrix" HorizontalAlignment="Left" Margin="10,297,0,0" VerticalAlignment="Top" Foreground="#FFEDEDED" Height="26" Width="65"/>
-            <TextBox Name="matrixInput2" TextChanged="matrixInputTextChanged" HorizontalAlignment="Left" Height="240" Margin="36.705,52,0,0" TextWrapping="Wrap" AcceptsReturn="True" VerticalAlignment="Top" Width="240" FontFamily="Courier New" Background="#22000000" Foreground="#FFEDEDED" CaretBrush="#FFEDEDED" FontSize="16" Grid.Column="1"/>
+            <TextBox ToolTip="Matriz #2" Name="matrixInput2" TextChanged="matrixInputTextChanged" HorizontalAlignment="Left" Height="240" Margin="36.705,52,0,0" TextWrapping="Wrap" AcceptsReturn="True" VerticalAlignment="Top" Width="240" FontFamily="Courier New" Background="#22000000" Foreground="#FFEDEDED" CaretBrush="#FFEDEDED" FontSize="16" Grid.Column="1"/>
             <Label Name="validMatrix2" Content="No matrix" HorizontalAlignment="Left" Margin="213,297,0,0" VerticalAlignment="Top" Foreground="#FFEDEDED" Height="26" Width="64" Grid.Column="1"/>
             <Button Content="Result" HorizontalAlignment="Left" Margin="36.705,11,0,0" VerticalAlignment="Top" Width="240" Height="31" Click="matrixOperation" Grid.Column="1" />
-            <TextBox Name="displayMatrix" Text="{Binding Text, Mode=OneWay}" IsReadOnly="True" HorizontalAlignment="Left" Height="281" Margin="316.705,11,0,0" TextWrapping="Wrap" AcceptsReturn="True" VerticalAlignment="Top" Width="341" FontFamily="Courier New" Background="#22000000" Foreground="#FFEDEDED" CaretBrush="#FFEDEDED" FontSize="16" Grid.Column="1"/>
+            <TextBox ToolTip="Result Matrix" Name="displayMatrix" Text="{Binding Text, Mode=OneWay}" IsReadOnly="True" HorizontalAlignment="Left" Height="281" Margin="316.705,11,0,0" TextWrapping="Wrap" AcceptsReturn="True" VerticalAlignment="Top" Width="341" FontFamily="Courier New" Background="#22000000" Foreground="#FFEDEDED" CaretBrush="#FFEDEDED" FontSize="16" Grid.Column="1"/>
             <StackPanel Name="buttonsDisplay" HorizontalAlignment="Left" Height="268" Margin="700.705,11,0,0" VerticalAlignment="Top" Width="64" Grid.Column="1"/>
             <StackPanel Name= "xDisplay" HorizontalAlignment="Left" Height="268" Margin="786.705,11,0,0" VerticalAlignment="Top" Width="64" Grid.Column="1"/>
             <StackPanel Name="yDisplay" HorizontalAlignment="Left" Height="268" Margin="872.705,10,0,0" VerticalAlignment="Top" Width="64" Grid.Column="1"/>
             <Button Name="Rotate" Content="Rotate" HorizontalAlignment="Left" Margin="490.705,349,0,0" VerticalAlignment="Top" Width="75" Click="rotation" Grid.Column="1"/>
             <Button Name="Translate" Content="Translate" HorizontalAlignment="Left" Margin="490.705,386,0,0" VerticalAlignment="Top" Width="75" Click="translation" Grid.Column="1"/>
             <Button Name="Scale" Content="Escale" HorizontalAlignment="Left" Margin="490.705,426,0,0" VerticalAlignment="Top" Width="75" Click="escaling" Grid.Column="1"/>
-            <TextBox Name="rotacionar" HorizontalAlignment="Left" Height="23" Margin="581.705,348,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="97" Grid.Column="1" MaxLength="3" MaxLines="1"/>
-            <TextBox Name="transladarX" HorizontalAlignment="Left" Height="23" Margin="581.705,386,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="46" Grid.Column="1" MaxLength="3" MaxLines="1"/>
-            <TextBox Name="transladarY" HorizontalAlignment="Left" Height="23" Margin="632.705,386,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="46" Grid.Column="1" MaxLength="3" MaxLines="1"/>
-            <TextBox Name="escalonarX" HorizontalAlignment="Left" Height="23" Margin="581.705,425,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="46" Grid.Column="1" MaxLength="3" MaxLines="1"/>
-            <TextBox x:Name="escalonarY" HorizontalAlignment="Left" Height="23" Margin="632.705,425,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="46" Grid.Column="1" MaxLength="3" MaxLines="1"/>
-            <TextBox x:Name="formula1" HorizontalAlignment="Left" Height="23" Margin="129,348,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="72" MaxLines="1" MaxLength="9"/>
-            <TextBox x:Name="formula2" HorizontalAlignment="Left" Height="23" Margin="156,348,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="72" Grid.Column="1" MaxLength="9" MaxLines="1"/>
-            <TextBox x:Name="yFormula1" HorizontalAlignment="Left" Height="23" Margin="67,348,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" RenderTransformOrigin="-0.677,0.478" MaxLines="1" MaxLength="2"/>
-            <TextBox x:Name="xFormula1" HorizontalAlignment="Left" Height="23" Margin="10,348,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" RenderTransformOrigin="-0.677,0.478" MaxLength="2" MaxLines="1"/>
+            <TextBox ToolTip="Angle" Name="rotacionar" HorizontalAlignment="Left" Height="23" Margin="581.705,348,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="97" Grid.Column="1" MaxLength="3" MaxLines="1"/>
+            <TextBox ToolTip="Amount in the X axis" Name="transladarX" HorizontalAlignment="Left" Height="23" Margin="581.705,386,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="46" Grid.Column="1" MaxLength="3" MaxLines="1"/>
+            <TextBox ToolTip="Amount in the Y axis" Name="transladarY" HorizontalAlignment="Left" Height="23" Margin="632.705,386,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="46" Grid.Column="1" MaxLength="3" MaxLines="1"/>
+            <TextBox ToolTip="Amount in the X axis" Name="escalonarX" HorizontalAlignment="Left" Height="23" Margin="581.705,425,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="46" Grid.Column="1" MaxLength="3" MaxLines="1"/>
+            <TextBox ToolTip="Amount in the Y axis" Name="escalonarY" HorizontalAlignment="Left" Height="23" Margin="632.705,425,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="46" Grid.Column="1" MaxLength="3" MaxLines="1"/>
+            <TextBox ToolTip="Formula input" Name="formula1" HorizontalAlignment="Left" Height="23" Margin="129,348,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="72" MaxLines="1" MaxLength="9"/>
+            <TextBox ToolTip="Formula input" Name="formula2" HorizontalAlignment="Left" Height="23" Margin="156,348,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="72" Grid.Column="1" MaxLength="9" MaxLines="1"/>
+            <TextBox ToolTip="Height" Name="yFormula1" HorizontalAlignment="Left" Height="23" Margin="67,348,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" RenderTransformOrigin="-0.677,0.478" MaxLines="1" MaxLength="2"/>
+            <TextBox ToolTip="Width" Name="xFormula1" HorizontalAlignment="Left" Height="23" Margin="10,348,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" RenderTransformOrigin="-0.677,0.478" MaxLength="2" MaxLines="1"/>
             <Button Content="Create" HorizontalAlignment="Left" Margin="206,349,0,0" VerticalAlignment="Top" Width="44" Click="clickFormula1" Grid.ColumnSpan="2"/>
-            <TextBox x:Name="yFormula2" HorizontalAlignment="Left" Height="23" Margin="94,348,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" RenderTransformOrigin="-0.677,0.478" Grid.Column="1" MaxLength="2" MaxLines="1"/>
-            <TextBox x:Name="xFormula2" HorizontalAlignment="Left" Height="23" Margin="37,348,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" RenderTransformOrigin="-0.677,0.478" Grid.Column="1" MaxLength="2" MaxLines="1"/>
+            <TextBox ToolTip="Height" Name="yFormula2" HorizontalAlignment="Left" Height="23" Margin="94,348,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" RenderTransformOrigin="-0.677,0.478" Grid.Column="1" MaxLength="2" MaxLines="1"/>
+            <TextBox ToolTip="Width" Name="xFormula2" HorizontalAlignment="Left" Height="23" Margin="37,348,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" RenderTransformOrigin="-0.677,0.478" Grid.Column="1" MaxLength="2" MaxLines="1"/>
             <Button Content="Create" HorizontalAlignment="Left" Margin="233,348,0,0" VerticalAlignment="Top" Width="44" Click="clickFormula2" Grid.Column="1"/>
             <Label Content="x" HorizontalAlignment="Left" Margin="46,345,0,0" VerticalAlignment="Top" Foreground="#FFEDEDED" Height="26"/>
             <Label Content="of" HorizontalAlignment="Left" Margin="103,345,0,0" VerticalAlignment="Top" Foreground="#FFEDEDED" Height="26"/>
             <Label Content="x" HorizontalAlignment="Left" Margin="73,345,0,0" VerticalAlignment="Top" Foreground="#FFEDEDED" Height="26" Grid.Column="1"/>
             <Label Content="of" HorizontalAlignment="Left" Margin="130,345,0,0" VerticalAlignment="Top" Foreground="#FFEDEDED" Height="26" Grid.Column="1"/>
-            <Label Name="validSize1" Content="" HorizontalAlignment="Left" Margin="19,358,0,0" VerticalAlignment="Top" Foreground="#ffe74c3c" Height="26" Width="68"/>
-            <Label Name="validSize2" Content="" HorizontalAlignment="Left" Margin="47,358,0,0" VerticalAlignment="Top" Foreground="#ffe74c3c" Height="26" Width="67" Grid.Column="1"/>
-            <Label Name="mSizeIssue" Content="" HorizontalAlignment="Left" Margin="129,297,0,0" VerticalAlignment="Top" Foreground="#ffe74c3c" Height="26" Width="276" Grid.ColumnSpan="2"/>
+            <Label Name="validSize1" Content="" HorizontalAlignment="Left" Margin="19,371,0,0" VerticalAlignment="Top" Foreground="#ffe74c3c" Height="26" Width="68"/>
+            <Label Name="validSize2" Content="" HorizontalAlignment="Left" Margin="46,371,0,0" VerticalAlignment="Top" Foreground="#ffe74c3c" Height="26" Width="67" Grid.Column="1"/>
+            <Label Name="mSizeIssue" Content="" HorizontalAlignment="Left" Margin="129,297,0,0" VerticalAlignment="Top" Foreground="#ffe74c3c" Height="43" Width="276" Grid.ColumnSpan="2"/>
         </Grid>
     </Grid>
     <x:Code>
         <![CDATA[
         
             bool closeIcon = true;
-            bool maximizeIcon = true;
+            bool minimizeIcon = true;
 
             private void DragWindow(object sender, MouseButtonEventArgs e) {
                 DragMove();
             }
             private void CloseWindow(object sender, RoutedEventArgs e) {
                 this.Close();
+            }
+            private void MinimizeWindow(object sender, RoutedEventArgs e) {
+                this.WindowState = WindowState.Minimized;
             }
             private void GetPoint(object sender, RoutedEventArgs e) {
                 GetMousePositionWindowsForms();
@@ -112,13 +115,13 @@
                     closeIcon = !closeIcon;
                 }
             }
-            private void ChangeMaximizeIcon(object sender, RoutedEventArgs e) {
-                if(maximizeIcon) {
-                    MaximizeIcon.ImageSource = new BitmapImage(new Uri(@"..\..\Images\m_hover.png", UriKind.Relative));
-                    maximizeIcon = !maximizeIcon;
+            private void ChangeMinimizeIcon(object sender, RoutedEventArgs e) {
+                if(minimizeIcon) {
+                    MinimizeIcon.ImageSource = new BitmapImage(new Uri(@"..\..\Images\m_hover.png", UriKind.Relative));
+                    minimizeIcon = !minimizeIcon;
                 } else {
-                    MaximizeIcon.ImageSource = new BitmapImage(new Uri(@"..\..\Images\m.png", UriKind.Relative));
-                    maximizeIcon = !maximizeIcon;
+                    MinimizeIcon.ImageSource = new BitmapImage(new Uri(@"..\..\Images\m.png", UriKind.Relative));
+                    minimizeIcon = !minimizeIcon;
                 }
             }
         ]]>
