@@ -61,7 +61,7 @@ namespace CalcMatriz
             for(int j = 0;j<m.columns;j++)
             {
                 t.setValue(0, j, x);
-                t.setValue(1, j, y);
+                t.setValue(1, j, -y);
             }
             return somarMatriz(t, m);
         }

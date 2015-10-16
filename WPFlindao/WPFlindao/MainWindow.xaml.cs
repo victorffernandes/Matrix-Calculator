@@ -31,7 +31,6 @@ namespace CalcMatriz
             polygon.Fill = new SolidColorBrush(Colors.DarkOrchid);
             polygon.Points = myPointCollection;
 
-
             canvas.Children.Add(polygon);
         }
 
@@ -76,9 +75,10 @@ namespace CalcMatriz
         public  Point GetMousePositionWindowsForms() {
             Point point = Mouse.GetPosition(canvas);
             bool added = false;
-            Text(point.X, point.Y, "(" + (point.X -125) + ":" + (point.Y -125) + ")", Colors.Red);
             if (point.X > 0 && point.Y > 0) {
-                myPointCollection.Add(point); added = true;
+                Text(point.X, point.Y, "(" + (point.X - 125) + ":" + (point.Y - 125) + ")", Colors.Red);
+                myPointCollection.Add(point);
+                added = true;
             }
 
             if (buttonsDisplay.Children.Count < 10 && added) {
@@ -119,8 +119,7 @@ namespace CalcMatriz
         public void ClearPoints() {
             myPointCollection.Clear();
             List<TextBlock> textBlocks = canvas.Children.OfType<TextBlock>().ToList();
-            foreach (TextBlock t in textBlocks)
-            {
+            foreach (TextBlock t in textBlocks) {
                 canvas.Children.Remove(t);
             }
             xDisplay.Children.Clear();
@@ -151,7 +150,7 @@ namespace CalcMatriz
                     }
                     else if (count != _matrixInputSecondaryTextSplit.Length)
                     {
-                        label.Content = "Err";
+                        label.Content = "Error";
                         label.Foreground = (Brush)new BrushConverter().ConvertFromString("#e74c3c");
                         break;
                     }
@@ -159,22 +158,22 @@ namespace CalcMatriz
                     for (int j = 0; j < _matrixInputSecondaryTextSplit.Length; j++) {
                         if (String.IsNullOrWhiteSpace(_matrixInputSecondaryTextSplit[j])
                          || String.IsNullOrEmpty(_matrixInputSecondaryTextSplit[j])) {
-                            label.Content = "Err";
+                            label.Content = "Error";
                             label.Foreground = (Brush)new BrushConverter().ConvertFromString("#e74c3c");
                             break;
                         }
-                        label.Content = "Succ";
+                        label.Content = "Valid";
                         label.Foreground = (Brush)new BrushConverter().ConvertFromString("#2ecc71");
                     }
                 }
 
-                if ((string)label.Content == "Succ") {
+                if ((string)label.Content == "Valid") {
                     try {
                         Console.WriteLine(Matriz.stringToMatrix(_matrixInputText).getAllValues());
-                        label.Content = "Succ";
+                        label.Content = "Valid";
                         label.Foreground = (Brush)new BrushConverter().ConvertFromString("#2ecc71");
                     } catch {
-                        label.Content = "Err";
+                        label.Content = "Error";
                         label.Foreground = (Brush)new BrushConverter().ConvertFromString("#e74c3c");
                     }
                 }
@@ -184,12 +183,9 @@ namespace CalcMatriz
 
         private void matrixInputTextChanged(object sender, TextChangedEventArgs e) {
 
-            if ((sender as TextBox).Name == "matrixInput1")
-            {
+            if ((sender as TextBox).Name == "matrixInput1") {
                 exceptionsMatrixTextBox(ref validMatrix1, (sender as TextBox));
-            }
-            else
-            {
+            } else {
                 exceptionsMatrixTextBox(ref validMatrix2, (sender as TextBox));
             }
         }
@@ -201,47 +197,48 @@ namespace CalcMatriz
             bool mEQUm = (m1.rows == m2.rows) && (m1.columns == m2.columns);
             mSizeIssue.Content = "";
 
-            if ((string)validMatrix1.Content == "Succ" && ((string)validMatrix2.Content == "Succ"
-                || comboBoxOperation.Text == "Determinante"
-                || comboBoxOperation.Text == "Inversa"
-                || comboBoxOperation.Text == "Transposta")) {
+            if ((string)validMatrix1.Content == "Valid" && ((string)validMatrix2.Content == "Valid"
+                || comboBoxOperation.Text == "Determinant"
+                || comboBoxOperation.Text == "Inverse"
+                || comboBoxOperation.Text == "Transpose")) {
                 switch (comboBoxOperation.Text) {
-                    case "Soma":
+                    case "Sum":
                         if (mEQUm) displayMatrix.Text = Matriz.somarMatriz(m1, m2).getAllValues();
                         else mSizeIssue.Content = "Both must be the same size to do this operation!";
                         break;
 
-                    case "Subtração":
+                    case "Subtraction":
                         if (mEQUm) displayMatrix.Text = Matriz.subtrairMatriz(m1, m2).getAllValues();
                         else mSizeIssue.Content = "Both must be the same size to do this operation!";
                         break;
 
-                    case "Multiplicação":
+                    case "Multiplication":
                         if (mEQUm) displayMatrix.Text = Matriz.multiply(m1, m2).getAllValues();
-                        else mSizeIssue.Content = "Both must be the same size to do this operation!";
+                        else mSizeIssue.Content = "First Matrix's collumns number must be equal to\x0Dsecond Matrix's rows number!";
                         break;
 
-                    case "Multiplicação por Escalar":
+                    case "Scalar Multiplication":
                         try {
                             displayMatrix.Text = Matriz.escalar(double.Parse(matrixInput1.Text), m2, "mul").getAllValues();
                         } catch {
-                            displayMatrix.Text = "Numero escalar não válido.";
+                            displayMatrix.Text = "Invalid scalar value!";
                         }
                         break;
 
-                    case "Determinante":
+                    case "Determinant":
                         displayMatrix.Text = Matriz.calculateDet(m1).ToString();
                         break;
 
-                    case "Inversa":
+                    case "Inverse":
                         displayMatrix.Text = Matriz.getInversa(m1).getAllValues();
                         break;
 
-                    case "Transposta":
+                    case "Transpose":
                         displayMatrix.Text = Matriz.stringToMatrix(matrixInput1.Text).getTransposta().getAllValues();
                         break;
 
-                    default: Console.WriteLine("Exception @ matrixOperation!");
+                    default:
+                        Console.WriteLine("Exception @ matrixOperation!");
                         break;
                 }
             }
@@ -288,9 +285,9 @@ namespace CalcMatriz
 
         private void translation(object sender, RoutedEventArgs e)
         {
-            transladarX.Text = Regex.Replace(transladarX.Text, "[^0-9,]+", "", RegexOptions.Compiled);
+            transladarX.Text = Regex.Replace(transladarX.Text, "[^0-9,-]+", "", RegexOptions.Compiled);
             transladarX.Text = (String.IsNullOrEmpty(transladarX.Text) || String.IsNullOrWhiteSpace(transladarX.Text)) ? "0" : transladarX.Text;
-            transladarY.Text = Regex.Replace(transladarY.Text, "[^0-9,]+", "", RegexOptions.Compiled);
+            transladarY.Text = Regex.Replace(transladarY.Text, "[^0-9,-]+", "", RegexOptions.Compiled);
             transladarY.Text = (String.IsNullOrEmpty(transladarY.Text) || String.IsNullOrWhiteSpace(transladarY.Text)) ? "0" : transladarY.Text;
             try {
                 canvas.Children.Clear();
