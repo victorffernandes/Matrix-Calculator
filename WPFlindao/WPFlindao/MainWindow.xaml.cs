@@ -76,7 +76,7 @@ namespace CalcMatriz
             Point point = Mouse.GetPosition(canvas);
             bool added = false;
             if (point.X > 0 && point.Y > 0) {
-                Text(point.X, point.Y, "(" + (point.X - 125) + ":" + (point.Y - 125) + ")", Colors.Red);
+                Text(point.X, point.Y, "(" + (point.X - 125) + ":" + (-(point.Y - 125)) + ")", Colors.Red);
                 myPointCollection.Add(point);
                 added = true;
             }
@@ -98,7 +98,7 @@ namespace CalcMatriz
 
                 TextBox ty = new TextBox();
                 ty.Name = "Y" + myPointCollection.IndexOf(point).ToString();
-                ty.Text = (point.Y-125).ToString();
+                ty.Text = (-(point.Y-125)).ToString();
                 ty.MaxLength = 4;
                 ty.MaxLines = 1;
                 yDisplay.Children.Add(ty);
@@ -112,7 +112,7 @@ namespace CalcMatriz
             // identify which button was clicked and perform necessary actions
             int index = buttonsDisplay.Children.IndexOf((sender as Button));
             myPointCollection[index] = new Point(double.Parse((xDisplay.Children[index] as TextBox).Text) + 125,
-            double.Parse((yDisplay.Children[index] as TextBox).Text) + 125);
+           - double.Parse((yDisplay.Children[index] as TextBox).Text) + 125);
             atualizeHUD();
         }
 
@@ -195,6 +195,7 @@ namespace CalcMatriz
             Matriz m1 = Matriz.stringToMatrix(matrixInput1.Text);
             Matriz m2 = Matriz.stringToMatrix(matrixInput2.Text);
             bool mEQUm = (m1.rows == m2.rows) && (m1.columns == m2.columns);
+            bool cEQUr = (m1.columns == m2.rows);
             mSizeIssue.Content = "";
 
             if ((string)validMatrix1.Content == "Valid" && ((string)validMatrix2.Content == "Valid"
@@ -213,7 +214,7 @@ namespace CalcMatriz
                         break;
 
                     case "Multiplication":
-                        if (mEQUm) displayMatrix.Text = Matriz.multiply(m1, m2).getAllValues();
+                        if (cEQUr) displayMatrix.Text = Matriz.multiply(m1, m2).getAllValues();
                         else mSizeIssue.Content = "First Matrix's collumns number must be equal to\x0Dsecond Matrix's rows number!";
                         break;
 
@@ -253,8 +254,8 @@ namespace CalcMatriz
                 }
                 for (int i = 0; i < myPointCollection.Count; i++) {
                     (xDisplay.Children[i] as TextBox).Text = (myPointCollection[i].X-125).ToString();
-                    (yDisplay.Children[i] as TextBox).Text = (myPointCollection[i].Y-125).ToString();
-                    Text(myPointCollection[i].X, myPointCollection[i].Y, "(" + (myPointCollection[i].X -125) + "," + (myPointCollection[i].Y-125) + ")", Colors.Red);
+                    (yDisplay.Children[i] as TextBox).Text = (-(myPointCollection[i].Y-125)).ToString();
+                    Text(myPointCollection[i].X, myPointCollection[i].Y, "(" + (myPointCollection[i].X -125).ToString() + ":" + (-(myPointCollection[i].Y-125)).ToString() + ")", Colors.Red);
                 }
             } catch {
             }
@@ -263,7 +264,7 @@ namespace CalcMatriz
 
         private void rotation(object sender, RoutedEventArgs e)
         {
-            rotacionar.Text = Regex.Replace(rotacionar.Text, "[^0-9,]+", "", RegexOptions.Compiled);
+            rotacionar.Text = Regex.Replace(rotacionar.Text, "[^0-9,-]+", "", RegexOptions.Compiled);
             rotacionar.Text = (String.IsNullOrEmpty(rotacionar.Text) || String.IsNullOrWhiteSpace(rotacionar.Text)) ? "0" : rotacionar.Text;
             try {
                 canvas.Children.Clear();
